@@ -1,0 +1,1869 @@
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\onlinemeet\wsgi.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8043
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/register/ HTTP/1.1" 200 7246
+"GET / HTTP/1.1" 200 8043
+"GET /accounts/login/ HTTP/1.1" 200 5836
+"POST /accounts/login/ HTTP/1.1" 200 6045
+"GET /accounts/register/ HTTP/1.1" 200 7246
+"GET /accounts/login/ HTTP/1.1" 200 5836
+"GET /accounts/register/ HTTP/1.1" 200 7246
+"GET /accounts/login/ HTTP/1.1" 200 5836
+"POST /accounts/login/ HTTP/1.1" 200 6045
+"GET /accounts/register/ HTTP/1.1" 200 7246
+"GET / HTTP/1.1" 200 8043
+C:\Users\chand\Desktop\online meet\accounts\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\accounts\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\accounts\forms.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8043
+"GET /accounts/register/ HTTP/1.1" 200 7527
+"POST /accounts/register/ HTTP/1.1" 200 7738
+Internal Server Error: /accounts/register/
+Traceback (most recent call last):
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\contrib\auth\__init__.py", line 121, in login
+    backend = backend or user.backend
+                         ^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'backend'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\views\generic\edit.py", line 184, in post
+    return super().post(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\views\generic\edit.py", line 153, in post
+    return self.form_valid(form)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\Desktop\online meet\accounts\views.py", line 29, in form_valid
+    login(self.request, self.object)
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\contrib\auth\__init__.py", line 127, in login
+    raise ValueError(
+ValueError: You have multiple authentication backends configured and therefore must provide the `backend` argument or set the `backend` attribute on the user.
+"POST /accounts/register/ HTTP/1.1" 500 101736
+"GET /accounts/login/ HTTP/1.1" 200 5836
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 8093
+"GET /meetings/create/ HTTP/1.1" 200 7518
+"GET /meetings/ HTTP/1.1" 200 7049
+"GET /dashboard/ HTTP/1.1" 200 8093
+"GET /meetings/join/ HTTP/1.1" 200 6724
+"GET /dashboard/ HTTP/1.1" 200 8093
+"GET /meetings/create/ HTTP/1.1" 200 7518
+C:\Users\chand\Desktop\online meet\meetings\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\meetings\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\meetings\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\meetings\forms.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 9217
+"GET /meetings/join/ HTTP/1.1" 200 7005
+"GET /dashboard/ HTTP/1.1" 200 8093
+"GET /meetings/create/ HTTP/1.1" 200 7794
+"POST /meetings/create/ HTTP/1.1" 302 0
+"GET /meetings/ HTTP/1.1" 200 9044
+"GET /meetings/32d1970e-c063-43da-a972-b0bcc765f550/start/ HTTP/1.1" 302 0
+"GET /meetings/32d1970e-c063-43da-a972-b0bcc765f550/room/ HTTP/1.1" 200 20269
+Not Found: /ws/chat/32d1970e-c063-43da-a972-b0bcc765f550/
+"GET /ws/chat/32d1970e-c063-43da-a972-b0bcc765f550/ HTTP/1.1" 404 3400
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 7005
+"GET /dashboard/ HTTP/1.1" 200 8662
+"GET /meetings/create/ HTTP/1.1" 200 7794
+"GET /dashboard/ HTTP/1.1" 200 8662
+"GET /meetings/ HTTP/1.1" 200 8699
+"GET /meetings/32d1970e-c063-43da-a972-b0bcc765f550/room/ HTTP/1.1" 200 19928
+Not Found: /ws/chat/32d1970e-c063-43da-a972-b0bcc765f550/
+"GET /ws/chat/32d1970e-c063-43da-a972-b0bcc765f550/ HTTP/1.1" 404 3400
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/?status=scheduled HTTP/1.1" 200 7049
+"GET /meetings/?status=active HTTP/1.1" 200 8699
+"GET /meetings/ HTTP/1.1" 200 8699
+"GET /meetings/32d1970e-c063-43da-a972-b0bcc765f550/update/ HTTP/1.1" 200 7875
+"GET /meetings/?status=active HTTP/1.1" 200 8699
+"GET /meetings/?status=ended HTTP/1.1" 200 7049
+"GET /meetings/?status=active HTTP/1.1" 200 8699
+"GET /meetings/?status=scheduled HTTP/1.1" 200 7049
+"GET /meetings/ HTTP/1.1" 200 8699
+"GET /meetings/ HTTP/1.1" 200 8699
+"GET /meetings/join/ HTTP/1.1" 200 7005
+"GET /meetings/ HTTP/1.1" 200 8699
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 8393
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8044
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/login/ HTTP/1.1" 200 5837
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 8663
+"GET /meetings/join/ HTTP/1.1" 200 7006
+"GET /meetings/ HTTP/1.1" 200 8700
+"GET /meetings/32d1970e-c063-43da-a972-b0bcc765f550/ HTTP/1.1" 200 10270
+"GET /meetings/join/ HTTP/1.1" 200 7006
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/32d1970e-c063-43da-a972-b0bcc765f550/room/ HTTP/1.1" 200 19929
+Not Found: /ws/chat/32d1970e-c063-43da-a972-b0bcc765f550/
+"GET /ws/chat/32d1970e-c063-43da-a972-b0bcc765f550/ HTTP/1.1" 404 3400
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 10305
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 7006
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/32d1970e-c063-43da-a972-b0bcc765f550/room/ HTTP/1.1" 200 23859
+Not Found: /ws/chat/32d1970e-c063-43da-a972-b0bcc765f550/
+"GET /ws/chat/32d1970e-c063-43da-a972-b0bcc765f550/ HTTP/1.1" 404 3400
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 8700
+"GET /meetings/?status=scheduled HTTP/1.1" 200 7050
+"GET /meetings/?status=active HTTP/1.1" 200 8700
+"GET /meetings/?status=scheduled HTTP/1.1" 200 7050
+"GET /meetings/ HTTP/1.1" 200 8700
+"GET /dashboard/ HTTP/1.1" 200 9801
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 8394
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8044
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/login/ HTTP/1.1" 200 5837
+"POST /accounts/login/ HTTP/1.1" 200 6046
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 9801
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 10305
+"GET / HTTP/1.1" 200 10305
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 7006
+"GET /meetings/join/ HTTP/1.1" 200 7006
+"GET /dashboard/ HTTP/1.1" 200 9801
+"GET /meetings/32d1970e-c063-43da-a972-b0bcc765f550/room/ HTTP/1.1" 200 23859
+Not Found: /ws/chat/32d1970e-c063-43da-a972-b0bcc765f550/
+"GET /ws/chat/32d1970e-c063-43da-a972-b0bcc765f550/ HTTP/1.1" 404 3400
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 8700
+"GET /meetings/?status=scheduled HTTP/1.1" 200 7050
+"GET /meetings/ HTTP/1.1" 200 8700
+"GET /meetings/32d1970e-c063-43da-a972-b0bcc765f550/update/ HTTP/1.1" 200 7876
+"GET /meetings/?status=scheduled HTTP/1.1" 200 7050
+"GET /meetings/ HTTP/1.1" 200 8700
+"GET /meetings/32d1970e-c063-43da-a972-b0bcc765f550/ HTTP/1.1" 200 10675
+"GET /meetings/32d1970e-c063-43da-a972-b0bcc765f550/end/ HTTP/1.1" 302 0
+"GET /meetings/32d1970e-c063-43da-a972-b0bcc765f550/ HTTP/1.1" 200 9955
+"GET / HTTP/1.1" 200 10306
+"GET /meetings/32d1970e-c063-43da-a972-b0bcc765f550/ HTTP/1.1" 200 9616
+"GET / HTTP/1.1" 200 10306
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 10308
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 7008
+"GET /meetings/create/ HTTP/1.1" 200 7797
+"POST /meetings/create/ HTTP/1.1" 302 0
+"GET /meetings/ HTTP/1.1" 200 10943
+"GET /meetings/17475931-1420-45f6-b65c-30c13781d952/update/ HTTP/1.1" 200 7873
+"GET /meetings/ HTTP/1.1" 200 10602
+"GET /meetings/17475931-1420-45f6-b65c-30c13781d952/ HTTP/1.1" 200 9725
+"GET /meetings/17475931-1420-45f6-b65c-30c13781d952/start/ HTTP/1.1" 302 0
+"GET /meetings/17475931-1420-45f6-b65c-30c13781d952/room/ HTTP/1.1" 200 24205
+Not Found: /ws/chat/17475931-1420-45f6-b65c-30c13781d952/
+"GET /ws/chat/17475931-1420-45f6-b65c-30c13781d952/ HTTP/1.1" 404 3400
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 10598
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 10308
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 7008
+"GET /dashboard/ HTTP/1.1" 200 9287
+"GET /meetings/join/ HTTP/1.1" 200 7008
+"GET /dashboard/ HTTP/1.1" 200 9287
+"GET /meetings/ HTTP/1.1" 200 10598
+"GET /meetings/17475931-1420-45f6-b65c-30c13781d952/room/ HTTP/1.1" 200 23864
+Not Found: /ws/chat/17475931-1420-45f6-b65c-30c13781d952/
+"GET /ws/chat/17475931-1420-45f6-b65c-30c13781d952/ HTTP/1.1" 404 3400
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 10598
+C:\Users\chand\Desktop\online meet\meetings\views.py changed, reloading.
+C:\Users\chand\Desktop\online meet\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\meetings\urls.py changed, reloading.
+C:\Users\chand\Desktop\online meet\meetings\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\meetings\views.py changed, reloading.
+C:\Users\chand\Desktop\online meet\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\meetings\urls.py changed, reloading.
+C:\Users\chand\Desktop\online meet\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 10308
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 10308
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\meetings\urls.py changed, reloading.
+C:\Users\chand\Desktop\online meet\meetings\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+"HEAD / HTTP/1.1" 200 0
+C:\Users\chand\Desktop\online meet\meetings\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 10308
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 8046
+"GET /accounts/login/ HTTP/1.1" 200 5839
+"POST /accounts/login/ HTTP/1.1" 200 6028
+"POST /accounts/login/ HTTP/1.1" 200 6028
+"GET /accounts/register/ HTTP/1.1" 200 7530
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8046
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/login/ HTTP/1.1" 200 5839
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 9287
+"GET /meetings/ HTTP/1.1" 200 10598
+"GET /meetings/17475931-1420-45f6-b65c-30c13781d952/update/ HTTP/1.1" 200 7873
+"GET /meetings/17475931-1420-45f6-b65c-30c13781d952/ HTTP/1.1" 200 11550
+"GET /meetings/17475931-1420-45f6-b65c-30c13781d952/end/ HTTP/1.1" 302 0
+"GET /meetings/17475931-1420-45f6-b65c-30c13781d952/ HTTP/1.1" 200 10830
+"GET /meetings/17475931-1420-45f6-b65c-30c13781d952/ HTTP/1.1" 200 10491
+"GET /dashboard/ HTTP/1.1" 200 9288
+"GET /dashboard/ HTTP/1.1" 200 9288
+"GET /dashboard/ HTTP/1.1" 200 9288
+"GET / HTTP/1.1" 200 10308
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 10308
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /dashboard/ HTTP/1.1" 200 9288
+"GET /meetings/ HTTP/1.1" 200 10336
+"GET /meetings/join/ HTTP/1.1" 200 7261
+"GET /meetings/ HTTP/1.1" 200 10336
+"GET /dashboard/ HTTP/1.1" 200 9288
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 22886
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /dashboard/ HTTP/1.1" 200 24726
+"GET /meetings/ HTTP/1.1" 200 21321
+"GET /meetings/join/ HTTP/1.1" 200 18246
+"GET / HTTP/1.1" 200 22886
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 20007
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4178
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 11563
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /admin/account/emailaddress/add/ HTTP/1.1" 200 14129
+"GET /static/admin/css/forms.css HTTP/1.1" 200 9047
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/js/core.js HTTP/1.1" 200 5682
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 8943
+"GET /static/admin/js/actions.js HTTP/1.1" 200 7872
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 11900
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /static/admin/img/search.svg HTTP/1.1" 200 458
+"GET /admin/ HTTP/1.1" 200 11563
+"GET /admin/accounts/user/ HTTP/1.1" 200 15598
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 6566
+"GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+"GET / HTTP/1.1" 200 21180
+"GET /accounts/profile/ HTTP/1.1" 200 17086
+"POST /accounts/profile/ HTTP/1.1" 200 17086
+"POST /accounts/profile/ HTTP/1.1" 200 17086
+"POST /accounts/profile/ HTTP/1.1" 200 17086
+"POST /accounts/profile/ HTTP/1.1" 200 17086
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 20007
+"GET /accounts/login/ HTTP/1.1" 200 16824
+"POST /accounts/login/ HTTP/1.1" 200 17015
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 22932
+"GET / HTTP/1.1" 200 21180
+"GET /dashboard/ HTTP/1.1" 200 22932
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 20007
+"GET /accounts/register/ HTTP/1.1" 200 18515
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4178
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 11563
+"GET /admin/accounts/user/ HTTP/1.1" 200 15598
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/ HTTP/1.1" 200 11563
+"GET /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 11563
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 21180
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 20007
+"GET /accounts/register/ HTTP/1.1" 200 18515
+"POST /accounts/register/ HTTP/1.1" 200 18932
+"POST /accounts/register/ HTTP/1.1" 200 18816
+"POST /accounts/register/ HTTP/1.1" 200 18857
+"POST /accounts/register/ HTTP/1.1" 200 18716
+"POST /accounts/register/ HTTP/1.1" 200 18716
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 20007
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/register/ HTTP/1.1" 200 18434
+"POST /accounts/register/ HTTP/1.1" 200 18620
+Internal Server Error: /accounts/register/
+Traceback (most recent call last):
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\contrib\auth\__init__.py", line 121, in login
+    backend = backend or user.backend
+                         ^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'backend'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\views\generic\edit.py", line 184, in post
+    return super().post(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\views\generic\edit.py", line 153, in post
+    return self.form_valid(form)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\Desktop\online meet\accounts\views.py", line 33, in form_valid
+    login(self.request, self.object)
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\contrib\auth\__init__.py", line 127, in login
+    raise ValueError(
+ValueError: You have multiple authentication backends configured and therefore must provide the `backend` argument or set the `backend` attribute on the user.
+"POST /accounts/register/ HTTP/1.1" 500 100322
+C:\Users\chand\Desktop\online meet\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\onlinemeet\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\Desktop\online meet\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 20007
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4178
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 9193
+"GET /admin/auth/group/ HTTP/1.1" 200 10065
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/ HTTP/1.1" 200 9193
+"GET /admin/accounts/user/ HTTP/1.1" 200 14294
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"POST /admin/accounts/user/ HTTP/1.1" 200 9808
+"GET /static/admin/js/cancel.js HTTP/1.1" 200 884
+"POST /admin/accounts/user/ HTTP/1.1" 302 0
+"GET /admin/accounts/user/ HTTP/1.1" 200 13925
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET / HTTP/1.1" 200 21180
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 20007
+"GET /accounts/register/ HTTP/1.1" 200 18434
+"POST /accounts/register/ HTTP/1.1" 200 18777
+"POST /accounts/register/ HTTP/1.1" 200 18661
+"POST /accounts/register/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 23283
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 20007
+"GET /accounts/login/ HTTP/1.1" 200 16824
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 22932
+"GET / HTTP/1.1" 200 20007
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/login/ HTTP/1.1" 200 16824
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 22942
+"GET /meetings/join/ HTTP/1.1" 200 18247
+"GET / HTTP/1.1" 200 21180
+"GET /meetings/join/ HTTP/1.1" 200 18247
+"GET /meetings/ HTTP/1.1" 200 18038
+"GET /meetings/create/ HTTP/1.1" 200 18783
+"POST /meetings/create/ HTTP/1.1" 302 0
+"GET /meetings/ HTTP/1.1" 200 20038
+"GET /meetings/8fa7e71f-a516-4234-b79a-8ba3107a228c/ HTTP/1.1" 200 21970
+"GET /meetings/join/ HTTP/1.1" 200 18252
+"GET /meetings/8fa7e71f-a516-4234-b79a-8ba3107a228c/start/ HTTP/1.1" 302 0
+"GET /meetings/8fa7e71f-a516-4234-b79a-8ba3107a228c/room/ HTTP/1.1" 200 29092
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/8fa7e71f-a516-4234-b79a-8ba3107a228c/room/ HTTP/1.1" 200 28414
+"GET /meetings/ HTTP/1.1" 200 19693
+"GET / HTTP/1.1" 200 21180
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 20007
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 20007
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4178
+"GET /static/admin/css/base.css HTTP/1.1" 200 21207
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+"GET /static/admin/css/login.css HTTP/1.1" 200 958
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 18533
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 9480
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /admin/accounts/user/ HTTP/1.1" 200 14298
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 6566
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/js/core.js HTTP/1.1" 200 5682
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 8943
+"GET /static/admin/js/actions.js HTTP/1.1" 200 7872
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/img/search.svg HTTP/1.1" 200 458
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+"GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+"GET / HTTP/1.1" 200 21180
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 20007
+"GET /accounts/login/ HTTP/1.1" 200 16824
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 23611
+"GET /meetings/ HTTP/1.1" 200 19693
+"GET /meetings/ HTTP/1.1" 200 19693
+"GET /meetings/8fa7e71f-a516-4234-b79a-8ba3107a228c/update/ HTTP/1.1" 200 18854
+"GET /meetings/8fa7e71f-a516-4234-b79a-8ba3107a228c/ HTTP/1.1" 200 22837
+"GET /meetings/8fa7e71f-a516-4234-b79a-8ba3107a228c/end/ HTTP/1.1" 302 0
+"GET /meetings/8fa7e71f-a516-4234-b79a-8ba3107a228c/ HTTP/1.1" 200 22117
+"GET /meetings/8fa7e71f-a516-4234-b79a-8ba3107a228c/ HTTP/1.1" 200 21778
+"GET / HTTP/1.1" 200 21180
+"GET /meetings/create/ HTTP/1.1" 200 18783
+"POST /meetings/create/ HTTP/1.1" 302 0
+"GET /meetings/ HTTP/1.1" 200 21925
+"GET /meetings/bd4b95ee-db10-4cac-884d-f5f389ecbf9a/update/ HTTP/1.1" 200 18863
+"GET /meetings/bd4b95ee-db10-4cac-884d-f5f389ecbf9a/ HTTP/1.1" 200 21973
+"GET /meetings/bd4b95ee-db10-4cac-884d-f5f389ecbf9a/start/ HTTP/1.1" 302 0
+"GET /meetings/bd4b95ee-db10-4cac-884d-f5f389ecbf9a/room/ HTTP/1.1" 200 29094
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 21580
+"GET /dashboard/ HTTP/1.1" 200 24723
+"GET /meetings/ HTTP/1.1" 200 21580
+"GET /meetings/join/ HTTP/1.1" 200 18247
+"GET /dashboard/ HTTP/1.1" 200 24723
+"GET /meetings/ HTTP/1.1" 200 21580
+"GET /meetings/bd4b95ee-db10-4cac-884d-f5f389ecbf9a/ HTTP/1.1" 200 22532
+"GET /meetings/bd4b95ee-db10-4cac-884d-f5f389ecbf9a/end/ HTTP/1.1" 302 0
+"GET /meetings/bd4b95ee-db10-4cac-884d-f5f389ecbf9a/ HTTP/1.1" 200 21812
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 21180
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 18247
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"POST /meetings/join/ HTTP/1.1" 200 18620
+"GET / HTTP/1.1" 200 21180
+"GET /meetings/join/ HTTP/1.1" 200 18247
+"GET / HTTP/1.1" 200 21180
+"GET /meetings/create/ HTTP/1.1" 200 18783
+"POST /meetings/create/ HTTP/1.1" 302 0
+"GET /meetings/ HTTP/1.1" 200 23814
+"GET /meetings/eeda3686-054c-4f0c-9ae3-5bb773e924b7/ HTTP/1.1" 200 21977
+"GET /meetings/eeda3686-054c-4f0c-9ae3-5bb773e924b7/start/ HTTP/1.1" 302 0
+"GET /meetings/eeda3686-054c-4f0c-9ae3-5bb773e924b7/room/ HTTP/1.1" 200 29098
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 23469
+"GET /admin/ HTTP/1.1" 200 9480
+"GET /admin/accounts/user/ HTTP/1.1" 200 14298
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/accounts/user/ HTTP/1.1" 200 14298
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/accounts/user/ HTTP/1.1" 200 14298
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/accounts/user/ HTTP/1.1" 200 14298
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/accounts/user/ HTTP/1.1" 200 14298
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET / HTTP/1.1" 200 21180
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 20007
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 20007
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/login/ HTTP/1.1" 200 16824
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 25837
+"GET / HTTP/1.1" 200 21180
+"GET /dashboard/ HTTP/1.1" 200 25837
+"GET /meetings/ HTTP/1.1" 200 23469
+"GET /meetings/eeda3686-054c-4f0c-9ae3-5bb773e924b7/ HTTP/1.1" 200 22536
+"GET /meetings/eeda3686-054c-4f0c-9ae3-5bb773e924b7/end/ HTTP/1.1" 302 0
+"GET /meetings/eeda3686-054c-4f0c-9ae3-5bb773e924b7/ HTTP/1.1" 200 21816
+"GET / HTTP/1.1" 200 21180
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 20007
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 20007
+"GET / HTTP/1.1" 200 20007
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/login/ HTTP/1.1" 200 16824
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 25843
+"GET /dashboard/ HTTP/1.1" 200 25843
+"GET / HTTP/1.1" 200 21180
+"GET /dashboard/ HTTP/1.1" 200 25843
+"GET /meetings/ HTTP/1.1" 200 23207
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 21182
+"GET / HTTP/1.1" 200 21182
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 20009
+"GET /accounts/login/ HTTP/1.1" 200 16826
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 20009
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/login/ HTTP/1.1" 200 16826
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 25848
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 20009
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 20009
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/login/ HTTP/1.1" 200 16826
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 25848
+"GET /dashboard/ HTTP/1.1" 200 25848
+"GET / HTTP/1.1" 200 21182
+"GET /meetings/ HTTP/1.1" 200 23209
+"GET / HTTP/1.1" 200 21182
+"GET /admin/ HTTP/1.1" 200 9480
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+"GET /static/admin/css/base.css HTTP/1.1" 304 0
+"GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+"GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+"GET /static/admin/js/theme.js HTTP/1.1" 304 0
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+"GET /admin/accounts/user/ HTTP/1.1" 200 14298
+"GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+"GET /static/admin/js/core.js HTTP/1.1" 304 0
+"GET /static/admin/js/actions.js HTTP/1.1" 304 0
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+"GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+"GET /static/admin/img/search.svg HTTP/1.1" 304 0
+"GET /static/admin/img/icon-no.svg HTTP/1.1" 304 0
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+"GET /static/admin/js/filters.js HTTP/1.1" 304 0
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 304 0
+"GET /admin/auth/group/add/ HTTP/1.1" 200 16703
+"GET /static/admin/css/forms.css HTTP/1.1" 200 9047
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15292
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 11900
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 3291
+"GET /static/admin/img/icon-unknown-alt.svg HTTP/1.1" 200 655
+"GET /static/admin/img/icon-unknown.svg HTTP/1.1" 200 655
+"GET /admin/chat/chatmessage/add/ HTTP/1.1" 200 16441
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+"GET /admin/meetings/meeting/add/ HTTP/1.1" 200 20082
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 8466
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+"GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+"GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+"GET / HTTP/1.1" 200 21182
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 20009
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/login/ HTTP/1.1" 200 16826
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 25848
+"GET / HTTP/1.1" 200 21182
+"GET /dashboard/ HTTP/1.1" 200 25848
+"GET /meetings/create/ HTTP/1.1" 200 18785
+"POST /meetings/create/ HTTP/1.1" 302 0
+"GET /meetings/ HTTP/1.1" 200 25718
+"GET /meetings/4773f5c0-7ba0-4ebf-b7eb-5f500a31954d/start/ HTTP/1.1" 302 0
+"GET /meetings/4773f5c0-7ba0-4ebf-b7eb-5f500a31954d/room/ HTTP/1.1" 200 29094
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 25373
+"GET /meetings/ HTTP/1.1" 200 25373
+"GET /dashboard/ HTTP/1.1" 200 26968
+"GET /meetings/ HTTP/1.1" 200 25373
+"GET /meetings/4773f5c0-7ba0-4ebf-b7eb-5f500a31954d/ HTTP/1.1" 200 22540
+"GET /meetings/4773f5c0-7ba0-4ebf-b7eb-5f500a31954d/end/ HTTP/1.1" 302 0
+"GET /meetings/4773f5c0-7ba0-4ebf-b7eb-5f500a31954d/ HTTP/1.1" 200 21820
+"GET / HTTP/1.1" 200 21182
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 20009
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 20009
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/login/ HTTP/1.1" 200 16826
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 26969
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 20009
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 21436
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 21432
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 21432
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+C:\Users\chand\OneDrive\Desktop\online meet\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet\accounts\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 21432
+"GET /accounts/login/ HTTP/1.1" 200 16558
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 26701
+"GET /accounts/profile/ HTTP/1.1" 200 18811
+"POST /accounts/profile/ HTTP/1.1" 302 0
+"GET /accounts/profile/ HTTP/1.1" 200 19155
+"GET /dashboard/ HTTP/1.1" 200 26703
+"GET /accounts/profile/ HTTP/1.1" 200 18814
+C:\Users\chand\OneDrive\Desktop\online meet\accounts\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet\accounts\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet\meetings\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: accounts_user.face_encoding
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\contrib\auth\mixins.py", line 71, in dispatch
+    if not request.user.is_authenticated:
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\utils\functional.py", line 266, in inner
+    self._setup()
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\utils\functional.py", line 419, in _setup
+    self._wrapped = self._setupfunc()
+                    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\contrib\auth\middleware.py", line 25, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\contrib\auth\middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+                           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\contrib\auth\__init__.py", line 198, in get_user
+    user = backend.get_user(user_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\contrib\auth\backends.py", line 161, in get_user
+    user = UserModel._default_manager.get(pk=user_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: accounts_user.face_encoding
+"GET /dashboard/ HTTP/1.1" 500 175224
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: accounts_user.face_encoding
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\views\generic\base.py", line 226, in get
+    context = self.get_context_data(**kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\OneDrive\Desktop\online meet\core\views.py", line 15, in get_context_data
+    if self.request.user.is_authenticated:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\utils\functional.py", line 266, in inner
+    self._setup()
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\utils\functional.py", line 419, in _setup
+    self._wrapped = self._setupfunc()
+                    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\contrib\auth\middleware.py", line 25, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\contrib\auth\middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+                           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\contrib\auth\__init__.py", line 198, in get_user
+    user = backend.get_user(user_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\contrib\auth\backends.py", line 161, in get_user
+    user = UserModel._default_manager.get(pk=user_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: accounts_user.face_encoding
+"GET / HTTP/1.1" 500 183178
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 22606
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /dashboard/ HTTP/1.1" 200 26703
+"GET /meetings/ HTTP/1.1" 200 24844
+"GET /meetings/join/ HTTP/1.1" 200 17982
+"GET / HTTP/1.1" 200 22606
+"GET /meetings/create/ HTTP/1.1" 200 18518
+"POST /meetings/create/ HTTP/1.1" 302 0
+"GET /meetings/ HTTP/1.1" 200 27348
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/start/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 28835
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 27003
+C:\Users\chand\OneDrive\Desktop\online meet\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 22606
+"GET /meetings/join/ HTTP/1.1" 200 17982
+"GET / HTTP/1.1" 200 22606
+"GET /dashboard/ HTTP/1.1" 200 27818
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/ HTTP/1.1" 200 22274
+"GET /dashboard/ HTTP/1.1" 200 27818
+"GET / HTTP/1.1" 200 22606
+"GET /meetings/join/ HTTP/1.1" 200 17982
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 34082
+"POST /meetings/verify-face/ HTTP/1.1" 200 77
+"POST /meetings/verify-face/ HTTP/1.1" 200 34
+"POST /meetings/verify-face/ HTTP/1.1" 200 34
+"POST /meetings/verify-face/ HTTP/1.1" 200 34
+"POST /meetings/verify-face/ HTTP/1.1" 200 34
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 28494
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 28494
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 27003
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/join/ HTTP/1.1" 200 17982
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 34790
+"GET /accounts/profile/ HTTP/1.1" 200 18814
+"POST /accounts/profile/ HTTP/1.1" 302 0
+"GET /accounts/profile/ HTTP/1.1" 200 19524
+"GET /media/avatars/photo.jpg HTTP/1.1" 200 298913
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 34828
+"GET /media/avatars/photo.jpg HTTP/1.1" 304 0
+"POST /meetings/verify-face/ HTTP/1.1" 200 146
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 28494
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 28494
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/join/ HTTP/1.1" 200 17982
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 34828
+"GET /media/avatars/photo.jpg HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 24316
+C:\Users\chand\OneDrive\Desktop\online meet\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/join/ HTTP/1.1" 200 17982
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 44472
+"GET /media/avatars/photo.jpg HTTP/1.1" 304 0
+"POST /meetings/verify-face/ HTTP/1.1" 200 146
+"HEAD /static/favicon.ico?1761990415466 HTTP/1.1" 404 0
+"HEAD /static/favicon.ico?1761990417862 HTTP/1.1" 404 0
+"HEAD /static/favicon.ico?1761990435251 HTTP/1.1" 404 0
+"HEAD /static/favicon.ico?1761990436383 HTTP/1.1" 404 0
+"HEAD /static/favicon.ico?1761990436966 HTTP/1.1" 404 0
+"HEAD /static/favicon.ico?1761990437514 HTTP/1.1" 404 0
+"GET / HTTP/1.1" 200 24316
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/join/ HTTP/1.1" 200 17982
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 47748
+"GET /media/avatars/photo.jpg HTTP/1.1" 304 0
+"POST /meetings/verify-face/ HTTP/1.1" 200 146
+"HEAD /?1761990707721 HTTP/1.1" 200 0
+"HEAD /?1761990707732 HTTP/1.1" 200 0
+"HEAD /?1761990707739 HTTP/1.1" 200 0
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 33667
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET / HTTP/1.1" 200 24316
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/join/ HTTP/1.1" 200 17982
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 47748
+"GET /media/avatars/photo.jpg HTTP/1.1" 304 0
+"POST /meetings/verify-face/ HTTP/1.1" 200 146
+"HEAD /?1761990933838 HTTP/1.1" 200 0
+"HEAD /?1761990933851 HTTP/1.1" 200 0
+"HEAD /?1761990933860 HTTP/1.1" 200 0
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 35316
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 27003
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/join/ HTTP/1.1" 200 17982
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 47748
+"GET /media/avatars/photo.jpg HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 24316
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 17982
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 47748
+"GET /media/avatars/photo.jpg HTTP/1.1" 304 0
+"POST /meetings/verify-face/ HTTP/1.1" 200 146
+"HEAD /?1761991268902 HTTP/1.1" 200 0
+"HEAD /?1761991268915 HTTP/1.1" 200 0
+"HEAD /?1761991268928 HTTP/1.1" 200 0
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 35316
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 27003
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 21432
+"GET /accounts/login/ HTTP/1.1" 200 16558
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 29562
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 48105
+"GET /media/avatars/photo.jpg HTTP/1.1" 304 0
+"POST /meetings/verify-face/ HTTP/1.1" 200 146
+"HEAD /?1762014779652 HTTP/1.1" 200 0
+"HEAD /?1762014779664 HTTP/1.1" 200 0
+"HEAD /?1762014779670 HTTP/1.1" 200 0
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 35316
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 27003
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/join/ HTTP/1.1" 200 17982
+"POST /meetings/join/ HTTP/1.1" 200 18371
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 47748
+"POST /meetings/verify-face/ HTTP/1.1" 200 146
+"HEAD /?1762014961808 HTTP/1.1" 200 0
+"HEAD /?1762014961818 HTTP/1.1" 200 0
+"HEAD /?1762014961824 HTTP/1.1" 200 0
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 41188
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 27003
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/join/ HTTP/1.1" 200 17982
+Internal Server Error: /meetings/join/
+Traceback (most recent call last):
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\fields\__init__.py", line 2688, in to_python
+    return uuid.UUID(**{input_form: value})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\uuid.py", line 178, in __init__
+    raise ValueError('badly formed hexadecimal UUID string')
+ValueError: badly formed hexadecimal UUID string
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\OneDrive\Desktop\online meet\meetings\views.py", line 102, in join_meeting
+    meeting = Meeting.objects.get(id=meeting_id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 623, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 1318, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\lookups.py", line 341, in get_prep_lookup
+    return super().get_prep_lookup()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\lookups.py", line 85, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\fields\__init__.py", line 2672, in get_prep_value
+    return self.to_python(value)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\fields\__init__.py", line 2690, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['“https://www.perplexity.ai/search/rajkumar-family-caste-kcW7A0KATWCoJxfGK54glA#2” is not a valid UUID.']
+"POST /meetings/join/ HTTP/1.1" 500 148992
+Internal Server Error: /meetings/join/
+Traceback (most recent call last):
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\fields\__init__.py", line 2688, in to_python
+    return uuid.UUID(**{input_form: value})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\uuid.py", line 178, in __init__
+    raise ValueError('badly formed hexadecimal UUID string')
+ValueError: badly formed hexadecimal UUID string
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\OneDrive\Desktop\online meet\meetings\views.py", line 102, in join_meeting
+    meeting = Meeting.objects.get(id=meeting_id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 623, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 1318, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\lookups.py", line 341, in get_prep_lookup
+    return super().get_prep_lookup()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\lookups.py", line 85, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\fields\__init__.py", line 2672, in get_prep_value
+    return self.to_python(value)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\fields\__init__.py", line 2690, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['“https://www.perplexity.ai/search/rajkumar-family-caste-kcW7A0KATWCoJxfGK54glA#2” is not a valid UUID.']
+"POST /meetings/join/ HTTP/1.1" 500 148992
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 17982
+Internal Server Error: /meetings/join/
+Traceback (most recent call last):
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\fields\__init__.py", line 2688, in to_python
+    return uuid.UUID(**{input_form: value})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\uuid.py", line 178, in __init__
+    raise ValueError('badly formed hexadecimal UUID string')
+ValueError: badly formed hexadecimal UUID string
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\OneDrive\Desktop\online meet\meetings\views.py", line 102, in join_meeting
+    meeting = Meeting.objects.get(id=meeting_id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 623, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 1318, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\lookups.py", line 341, in get_prep_lookup
+    return super().get_prep_lookup()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\lookups.py", line 85, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\fields\__init__.py", line 2672, in get_prep_value
+    return self.to_python(value)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chand\AppData\Roaming\Python\Python312\site-packages\django\db\models\fields\__init__.py", line 2690, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['“https://www.perplexity.ai/search/rajkumar-family-caste-kcW7A0KATWCoJxfGK54glA#2” is not a valid UUID.']
+"POST /meetings/join/ HTTP/1.1" 500 148992
+C:\Users\chand\OneDrive\Desktop\online meet\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/join/ HTTP/1.1" 200 18189
+"POST /meetings/join/ HTTP/1.1" 200 19309
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 47748
+"POST /meetings/verify-face/ HTTP/1.1" 200 146
+"POST /meetings/verify-face/ HTTP/1.1" 200 146
+"POST /meetings/verify-face/ HTTP/1.1" 200 146
+"HEAD /?1762015194723 HTTP/1.1" 200 0
+"HEAD /?1762015194733 HTTP/1.1" 200 0
+"HEAD /?1762015194741 HTTP/1.1" 200 0
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 46320
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 18189
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/ HTTP/1.1" 200 22677
+"GET /meetings/join/ HTTP/1.1" 200 18189
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 47748
+"POST /meetings/verify-face/ HTTP/1.1" 200 146
+"HEAD /?1762015300498 HTTP/1.1" 200 0
+"HEAD /?1762015300509 HTTP/1.1" 200 0
+"HEAD /?1762015300517 HTTP/1.1" 200 0
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 46320
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET / HTTP/1.1" 200 24316
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 18189
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 47748
+"POST /meetings/verify-face/ HTTP/1.1" 200 146
+"HEAD /?1762015586416 HTTP/1.1" 200 0
+"HEAD /?1762015586426 HTTP/1.1" 200 0
+"HEAD /?1762015586435 HTTP/1.1" 200 0
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 57629
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+Not Found: /ws/chat/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/
+"GET /ws/chat/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/ HTTP/1.1" 404 3400
+Not Found: /ws/chat/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/
+"GET /ws/chat/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/ HTTP/1.1" 404 3400
+Not Found: /ws/chat/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/
+"GET /ws/chat/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/ HTTP/1.1" 404 3400
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET / HTTP/1.1" 200 24316
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/join/ HTTP/1.1" 200 18189
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 47748
+Internal Server Error: /meetings/verify-face/
+"POST /meetings/verify-face/ HTTP/1.1" 500 146
+Internal Server Error: /meetings/verify-face/
+"POST /meetings/verify-face/ HTTP/1.1" 500 146
+Internal Server Error: /meetings/verify-face/
+"POST /meetings/verify-face/ HTTP/1.1" 500 146
+Internal Server Error: /meetings/verify-face/
+"POST /meetings/verify-face/ HTTP/1.1" 500 146
+Internal Server Error: /meetings/verify-face/
+"POST /meetings/verify-face/ HTTP/1.1" 500 146
+Internal Server Error: /meetings/verify-face/
+"POST /meetings/verify-face/ HTTP/1.1" 500 146
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 18189
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 47748
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"GET / HTTP/1.1" 200 24316
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 21432
+"GET /accounts/login/ HTTP/1.1" 200 16558
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 29562
+"GET /accounts/profile/ HTTP/1.1" 200 19183
+"POST /accounts/profile/ HTTP/1.1" 200 19694
+"POST /accounts/profile/ HTTP/1.1" 200 19694
+"POST /accounts/profile/ HTTP/1.1" 302 0
+"GET /accounts/profile/ HTTP/1.1" 200 19155
+"POST /accounts/profile/ HTTP/1.1" 302 0
+"GET /accounts/profile/ HTTP/1.1" 200 19584
+"GET /media/avatars/WIN_20251101_22_25_31_Pro.jpg HTTP/1.1" 200 154653
+"GET /dashboard/ HTTP/1.1" 200 29562
+"GET /meetings/join/ HTTP/1.1" 200 18189
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 47768
+"GET /media/avatars/WIN_20251101_22_25_31_Pro.jpg HTTP/1.1" 304 0
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"GET / HTTP/1.1" 200 24316
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet1\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet1\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 21432
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/login/ HTTP/1.1" 200 16558
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 29562
+"GET /accounts/profile/ HTTP/1.1" 200 19243
+"GET /media/avatars/WIN_20251101_22_25_31_Pro.jpg HTTP/1.1" 200 154653
+"POST /accounts/profile/ HTTP/1.1" 302 0
+"GET /accounts/profile/ HTTP/1.1" 200 19584
+"GET /dashboard/ HTTP/1.1" 200 29562
+"GET / HTTP/1.1" 200 24316
+"GET /accounts/profile/ HTTP/1.1" 200 19243
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/join/ HTTP/1.1" 200 18189
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/ HTTP/1.1" 200 22697
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/join/ HTTP/1.1" 200 18189
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 47768
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"HEAD /?1762050815113 HTTP/1.1" 200 0
+"HEAD /?1762050815136 HTTP/1.1" 200 0
+"HEAD /?1762050815152 HTTP/1.1" 200 0
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+C:\Users\chand\OneDrive\Desktop\online meet1\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet1\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet1\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 18189
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 47768
+Internal Server Error: /meetings/verify-face/
+"POST /meetings/verify-face/ HTTP/1.1" 500 149
+Internal Server Error: /meetings/verify-face/
+"POST /meetings/verify-face/ HTTP/1.1" 500 149
+Internal Server Error: /meetings/verify-face/
+"POST /meetings/verify-face/ HTTP/1.1" 500 149
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 18189
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 50166
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 121
+"HEAD /?1762051556507 HTTP/1.1" 200 0
+"HEAD /?1762051556525 HTTP/1.1" 200 0
+"HEAD /?1762051556541 HTTP/1.1" 200 0
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 59679
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET /meetings/?status=scheduled HTTP/1.1" 200 17773
+"GET /meetings/?status=scheduled HTTP/1.1" 200 17773
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET /meetings/join/ HTTP/1.1" 200 18189
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 50166
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 121
+"HEAD /?1762051604531 HTTP/1.1" 200 0
+"HEAD /?1762051604551 HTTP/1.1" 200 0
+"HEAD /?1762051604568 HTTP/1.1" 200 0
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 59679
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 27003
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 18189
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 50166
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 121
+"HEAD /?1762051882751 HTTP/1.1" 200 0
+"HEAD /?1762051882775 HTTP/1.1" 200 0
+"HEAD /?1762051882800 HTTP/1.1" 200 0
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 63287
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET /meetings/?status=scheduled HTTP/1.1" 200 17773
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET /dashboard/ HTTP/1.1" 200 29562
+"GET / HTTP/1.1" 200 24316
+C:\Users\chand\OneDrive\Desktop\online meet1\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 21432
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /accounts/login/ HTTP/1.1" 200 16558
+"POST /accounts/login/ HTTP/1.1" 200 16756
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 29562
+"GET /meetings/join/ HTTP/1.1" 200 18189
+C:\Users\chand\OneDrive\Desktop\online meet1\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24316
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 18189
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/ HTTP/1.1" 200 22697
+"GET /media/avatars/WIN_20251101_22_25_31_Pro.jpg HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/join/ HTTP/1.1" 200 18189
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 50166
+"POST /meetings/verify-face/ HTTP/1.1" 200 121
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 50166
+"POST /meetings/verify-face/ HTTP/1.1" 200 121
+"HEAD /?1762086292965 HTTP/1.1" 200 0
+"HEAD /?1762086292980 HTTP/1.1" 200 0
+"HEAD /?1762086292988 HTTP/1.1" 200 0
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 63287
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+Not Found: /ws/chat/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/
+"GET /ws/chat/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/ HTTP/1.1" 404 3400
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET / HTTP/1.1" 200 24316
+"GET /accounts/profile/ HTTP/1.1" 200 19243
+"POST /accounts/profile/ HTTP/1.1" 302 0
+"GET /accounts/profile/ HTTP/1.1" 200 19155
+"GET /dashboard/ HTTP/1.1" 200 29562
+"GET / HTTP/1.1" 200 24316
+"GET /accounts/profile/ HTTP/1.1" 200 18814
+"POST /accounts/profile/ HTTP/1.1" 302 0
+"GET /accounts/profile/ HTTP/1.1" 200 19584
+"GET /media/avatars/WIN_20251101_22_25_32_Pro.jpg HTTP/1.1" 200 158761
+"GET / HTTP/1.1" 200 24316
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/ HTTP/1.1" 200 22697
+"GET /media/avatars/WIN_20251101_22_25_32_Pro.jpg HTTP/1.1" 304 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 63287
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET /meetings/join/ HTTP/1.1" 200 18189
+"POST /meetings/join/ HTTP/1.1" 200 19288
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 50166
+"GET /media/avatars/WIN_20251101_22_25_32_Pro.jpg HTTP/1.1" 304 0
+"POST /meetings/verify-face/ HTTP/1.1" 200 121
+"HEAD /?1762086483111 HTTP/1.1" 200 0
+"HEAD /?1762086483122 HTTP/1.1" 200 0
+"HEAD /?1762086483133 HTTP/1.1" 200 0
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 63287
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/ HTTP/1.1" 200 27003
+"GET / HTTP/1.1" 200 24316
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24312
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 18185
+"GET / HTTP/1.1" 200 24312
+"GET /accounts/profile/ HTTP/1.1" 200 19239
+"GET /media/avatars/WIN_20251101_22_25_32_Pro.jpg HTTP/1.1" 200 158761
+"GET / HTTP/1.1" 200 24312
+"GET /dashboard/ HTTP/1.1" 200 29558
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 50519
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+C:\Users\chand\OneDrive\Desktop\online meet1\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet1\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet1\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet1\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet1\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\chand\OneDrive\Desktop\online meet1\meetings\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24312
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 18185
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 50162
+"GET /media/avatars/WIN_20251101_22_25_32_Pro.jpg HTTP/1.1" 304 0
+"POST /meetings/verify-face/ HTTP/1.1" 200 121
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"POST /meetings/verify-face/ HTTP/1.1" 200 124
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 50162
+"POST /meetings/verify-face/ HTTP/1.1" 200 121
+"HEAD /?1762088854016 HTTP/1.1" 200 0
+"HEAD /?1762088854027 HTTP/1.1" 200 0
+"HEAD /?1762088854037 HTTP/1.1" 200 0
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 63283
+"GET /meetings/ HTTP/1.1" 200 26999
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 63283
+"GET /meetings/ HTTP/1.1" 200 26999
+"GET /meetings/ HTTP/1.1" 200 26999
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 24312
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET /meetings/join/ HTTP/1.1" 200 18185
+"GET / HTTP/1.1" 200 24312
+"GET /meetings/ HTTP/1.1" 200 26999
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/ HTTP/1.1" 200 22693
+"GET /media/avatars/WIN_20251101_22_25_32_Pro.jpg HTTP/1.1" 304 0
+"GET /meetings/join/ HTTP/1.1" 200 18185
+"POST /meetings/join/ HTTP/1.1" 302 0
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/lobby/ HTTP/1.1" 200 50162
+"POST /meetings/verify-face/ HTTP/1.1" 200 121
+"HEAD /?1762090194581 HTTP/1.1" 200 0
+"HEAD /?1762090194642 HTTP/1.1" 200 0
+"HEAD /?1762090194688 HTTP/1.1" 200 0
+"POST /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/verify/ HTTP/1.1" 200 89
+"GET /meetings/c60d5f9d-0c06-4393-9a6b-8075cd2355b9/room/ HTTP/1.1" 200 63283
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3298
+"GET / HTTP/1.1" 200 24312
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 21428
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3912
+"GET / HTTP/1.1" 200 21428
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3912
+"GET /accounts/register/ HTTP/1.1" 200 18394
+"POST /accounts/register/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 23013
+"GET /meetings/create/ HTTP/1.1" 200 18632
+"POST /meetings/create/ HTTP/1.1" 302 0
+"GET /meetings/ HTTP/1.1" 200 19774
+"GET /meetings/af995e93-e8ee-41ad-9fb1-606302632198/start/ HTTP/1.1" 302 0
+"GET /meetings/af995e93-e8ee-41ad-9fb1-606302632198/room/ HTTP/1.1" 302 0
+"GET /meetings/af995e93-e8ee-41ad-9fb1-606302632198/lobby/ HTTP/1.1" 200 50724
+"GET /accounts/profile/ HTTP/1.1" 200 18885
+"POST /accounts/profile/ HTTP/1.1" 302 0
+"GET /accounts/profile/ HTTP/1.1" 200 19226
+"POST /accounts/profile/ HTTP/1.1" 302 0
+"GET /accounts/profile/ HTTP/1.1" 200 19618
+"GET /media/avatars/PHOTO_w4diGFs.jpg HTTP/1.1" 200 36461
+"GET /meetings/af995e93-e8ee-41ad-9fb1-606302632198/lobby/ HTTP/1.1" 200 50141
+"GET /media/avatars/PHOTO_w4diGFs.jpg HTTP/1.1" 304 0
+"POST /meetings/verify-face/ HTTP/1.1" 200 105
+"HEAD /?1762145187068 HTTP/1.1" 200 0
+"HEAD /?1762145187095 HTTP/1.1" 200 0
+"HEAD /?1762145187114 HTTP/1.1" 200 0
+"POST /meetings/af995e93-e8ee-41ad-9fb1-606302632198/verify/ HTTP/1.1" 200 89
+"GET /meetings/af995e93-e8ee-41ad-9fb1-606302632198/room/ HTTP/1.1" 200 63274
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3912
+"GET /meetings/ HTTP/1.1" 200 19429
+"GET /meetings/af995e93-e8ee-41ad-9fb1-606302632198/room/ HTTP/1.1" 200 63274
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3912
+"GET /meetings/ HTTP/1.1" 200 19429
+"GET /meetings/af995e93-e8ee-41ad-9fb1-606302632198/room/ HTTP/1.1" 200 63274
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3912
+Not Found: /ws/chat/af995e93-e8ee-41ad-9fb1-606302632198/
+"GET /ws/chat/af995e93-e8ee-41ad-9fb1-606302632198/ HTTP/1.1" 404 4014
+Not Found: /ws/chat/af995e93-e8ee-41ad-9fb1-606302632198/
+"GET /ws/chat/af995e93-e8ee-41ad-9fb1-606302632198/ HTTP/1.1" 404 4014
+Not Found: /ws/chat/af995e93-e8ee-41ad-9fb1-606302632198/
+"GET /ws/chat/af995e93-e8ee-41ad-9fb1-606302632198/ HTTP/1.1" 404 4014
+Not Found: /ws/chat/af995e93-e8ee-41ad-9fb1-606302632198/
+"GET /ws/chat/af995e93-e8ee-41ad-9fb1-606302632198/ HTTP/1.1" 404 4014
+- Broken pipe from ('127.0.0.1', 60026)
+"GET /meetings/ HTTP/1.1" 200 19429
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 21428
+"GET /accounts/login/ HTTP/1.1" 200 16586
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 23355
+"GET /meetings/ HTTP/1.1" 200 19429
+"GET /meetings/af995e93-e8ee-41ad-9fb1-606302632198/room/ HTTP/1.1" 302 0
+"GET /meetings/af995e93-e8ee-41ad-9fb1-606302632198/lobby/ HTTP/1.1" 200 50498
+"GET /media/avatars/PHOTO_w4diGFs.jpg HTTP/1.1" 304 0
+"POST /meetings/verify-face/ HTTP/1.1" 200 105
+"HEAD /?1762661400530 HTTP/1.1" 200 0
+"HEAD /?1762661400551 HTTP/1.1" 200 0
+"HEAD /?1762661400566 HTTP/1.1" 200 0
+"POST /meetings/af995e93-e8ee-41ad-9fb1-606302632198/verify/ HTTP/1.1" 200 89
+"GET /meetings/af995e93-e8ee-41ad-9fb1-606302632198/room/ HTTP/1.1" 200 63274
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3912
+"GET /meetings/ HTTP/1.1" 200 19429
+"GET /meetings/af995e93-e8ee-41ad-9fb1-606302632198/room/ HTTP/1.1" 200 63274
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3912
+"GET /meetings/ HTTP/1.1" 200 19429

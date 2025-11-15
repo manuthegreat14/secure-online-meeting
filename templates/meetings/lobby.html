@@ -1,0 +1,863 @@
+{% extends 'base.html' %}
+
+{% block title %}Lobby - {{ meeting.title }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .lobby-container {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+    
+    .lobby-card {
+        background: white;
+        border-radius: 1.5rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 900px;
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    .lobby-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+    }
+    
+    .lobby-header h2 {
+        margin: 0;
+        font-size: 1.75rem;
+        font-weight: 600;
+    }
+    
+    .lobby-header p {
+        margin: 0.5rem 0 0 0;
+        opacity: 0.9;
+    }
+    
+    .lobby-body {
+        padding: 2rem;
+    }
+    
+    .verification-step {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .verification-step.active {
+        border-color: #667eea;
+        background: #f3f4f6;
+    }
+    
+    .verification-step.completed {
+        border-color: #10b981;
+        background: #d1fae5;
+    }
+    
+    .verification-step-title {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    
+    .verification-step-title .icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #e5e7eb;
+        color: #6b7280;
+    }
+    
+    .verification-step.active .verification-step-title .icon {
+        background: #667eea;
+        color: white;
+    }
+    
+    .verification-step.completed .verification-step-title .icon {
+        background: #10b981;
+        color: white;
+    }
+    
+    .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+        margin: 1rem auto;
+        border-radius: 1rem;
+        overflow: hidden;
+        background: #000;
+    }
+    
+    #videoElement {
+        width: 100%;
+        display: block;
+    }
+    
+    #canvasElement {
+        display: none;
+    }
+    
+    .capture-btn {
+        background: #667eea;
+        color: white;
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .capture-btn:hover {
+        background: #5568d3;
+        transform: translateY(-2px);
+    }
+    
+    .capture-btn:disabled {
+        background: #9ca3af;
+        cursor: not-allowed;
+    }
+    
+    .captcha-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .captcha-image {
+        border: 2px solid #e5e7eb;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        background: #f9fafb;
+        font-size: 1.5rem;
+        letter-spacing: 0.5rem;
+        font-weight: bold;
+        user-select: none;
+    }
+    
+    .captcha-input {
+        padding: 0.75rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        text-align: center;
+        width: 200px;
+    }
+    
+    .fullscreen-warning {
+        background: #fef3c7;
+        border: 2px solid #fbbf24;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        color: #92400e;
+        text-align: center;
+    }
+    
+    .fullscreen-warning.success {
+        background: #d1fae5;
+        border-color: #10b981;
+        color: #065f46;
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-left: auto;
+    }
+    
+    .status-badge.pending {
+        background: #e5e7eb;
+        color: #6b7280;
+    }
+    
+    .status-badge.completed {
+        background: #d1fae5;
+        color: #065f46;
+    }
+    
+    .enter-btn {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 1.125rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 2rem;
+    }
+    
+    .enter-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    }
+    
+    .enter-btn:disabled {
+        background: #9ca3af;
+        cursor: not-allowed;
+    }
+    
+    .error-message {
+        background: #fee2e2;
+        border: 2px solid #f87171;
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        color: #991b1b;
+        margin-top: 1rem;
+    }
+    
+    .network-test-container {
+        padding: 1rem 0;
+    }
+    
+    .network-metric {
+        padding: 1rem;
+        background: #f9fafb;
+        border-radius: 0.5rem;
+        margin: 0.5rem;
+    }
+    
+    .network-metric p {
+        margin: 0.25rem 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="lobby-container">
+    <div class="lobby-card">
+        <div class="lobby-header">
+            <h2><i class="fas fa-door-open me-2"></i>Meeting Lobby</h2>
+            <p>{{ meeting.title }}</p>
+            {% if is_host %}
+            <p class="small mt-2" style="opacity: 0.8;"><i class="fas fa-crown me-1"></i>You are the host</p>
+            {% endif %}
+        </div>
+        
+        <div class="lobby-body">
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+            
+            <!-- Step 1: Face Verification -->
+            <div class="verification-step active" id="faceStep">
+                <div class="verification-step-title">
+                    <div class="icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <span>Face Verification</span>
+                    <span class="status-badge pending" id="faceStatus">Pending</span>
+                </div>
+                <p class="text-muted mb-3">Please position your face in front of the camera. Your face will be compared with your profile photo.</p>
+                {% if not user.avatar %}
+                <div class="alert alert-warning mb-3">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    You don't have a profile photo. Please <a href="{% url 'accounts:profile' %}" target="_blank">upload one</a> to continue.
+                </div>
+                {% else %}
+                <div class="text-center mb-3">
+                    <p class="small text-muted">Your profile photo:</p>
+                    <img src="{{ user.avatar.url }}" alt="Profile Photo" class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 3px solid #667eea;">
+                </div>
+                {% endif %}
+                <div class="video-container">
+                    <video id="videoElement" autoplay playsinline></video>
+                    <canvas id="canvasElement"></canvas>
+                </div>
+                <div class="text-center mt-3">
+                    <button class="capture-btn" id="captureBtn" {% if not user.avatar %}disabled{% endif %}>
+                        <i class="fas fa-camera me-2"></i>Capture Face
+                    </button>
+                </div>
+                <div id="faceResult" style="display: none; margin-top: 1rem; text-align: center;">
+                    <div id="faceImagePreview"></div>
+                    <p id="faceResultText" class="mt-2"></p>
+                </div>
+            </div>
+            
+            <!-- Step 2: Fullscreen Check -->
+            <div class="verification-step" id="fullscreenStep">
+                <div class="verification-step-title">
+                    <div class="icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                    <span>Fullscreen Verification</span>
+                    <span class="status-badge pending" id="fullscreenStatus">Pending</span>
+                </div>
+                <p class="text-muted mb-3">Please enter fullscreen mode to continue</p>
+                <div class="fullscreen-warning" id="fullscreenWarning">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    Please press F11 or click the button below to enter fullscreen mode
+                </div>
+                <div class="text-center mt-3">
+                    <button class="capture-btn" id="fullscreenBtn">
+                        <i class="fas fa-expand me-2"></i>Enter Fullscreen
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Step 3: Network Speed Check -->
+            <div class="verification-step" id="networkStep">
+                <div class="verification-step-title">
+                    <div class="icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <span>Network Speed Check</span>
+                    <span class="status-badge pending" id="networkStatus">Pending</span>
+                </div>
+                <p class="text-muted mb-3">Please wait while we check your network speed. Good connection is required for video meetings.</p>
+                <div class="network-test-container">
+                    <div id="networkTestProgress" style="text-align: center; margin: 1rem 0;">
+                        <div class="spinner-border text-primary" role="status" id="networkSpinner" style="display: none;">
+                            <span class="visually-hidden">Testing...</span>
+                        </div>
+                        <div id="networkResults" style="display: none; margin-top: 1rem;">
+                            <div class="row text-center">
+                                <div class="col-md-4">
+                                    <div class="network-metric">
+                                        <i class="fas fa-tachometer-alt fa-2x text-primary mb-2"></i>
+                                        <p class="mb-0"><strong>Download Speed</strong></p>
+                                        <p id="downloadSpeed" class="text-primary fs-4">-</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="network-metric">
+                                        <i class="fas fa-upload fa-2x text-success mb-2"></i>
+                                        <p class="mb-0"><strong>Upload Speed</strong></p>
+                                        <p id="uploadSpeed" class="text-success fs-4">-</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="network-metric">
+                                        <i class="fas fa-stopwatch fa-2x text-info mb-2"></i>
+                                        <p class="mb-0"><strong>Latency</strong></p>
+                                        <p id="latency" class="text-info fs-4">-</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="networkStatusMessage" class="mt-3"></div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="capture-btn" id="testNetworkBtn">
+                            <i class="fas fa-network-wired me-2"></i>Test Network Speed
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 4: Captcha -->
+            <div class="verification-step" id="captchaStep">
+                <div class="verification-step-title">
+                    <div class="icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <span>Captcha Verification</span>
+                    <span class="status-badge pending" id="captchaStatus">Pending</span>
+                </div>
+                <p class="text-muted mb-3">Please enter the code shown below</p>
+                <div class="captcha-container">
+                    <div class="captcha-image" id="captchaCode">ABC123</div>
+                    <input type="text" class="captcha-input" id="captchaInput" placeholder="Enter code" maxlength="6">
+                    <button class="capture-btn" id="verifyCaptchaBtn">
+                        <i class="fas fa-check me-2"></i>Verify Captcha
+                    </button>
+                </div>
+            </div>
+            
+            <button class="enter-btn" id="enterMeetingBtn" disabled>
+                <i class="fas fa-sign-in-alt me-2"></i>Enter Meeting
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let stream = null;
+    let faceVerified = false;
+    let fullscreenVerified = false;
+    let networkVerified = false;
+    let captchaVerified = false;
+    let captchaCode = '';
+    let userHasAvatar = {% if user.avatar %}true{% else %}false{% endif %};
+    let videoReady = false;
+    
+    // Generate random captcha
+    function generateCaptcha() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        captchaCode = '';
+        for (let i = 0; i < 6; i++) {
+            captchaCode += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        document.getElementById('captchaCode').textContent = captchaCode;
+    }
+    
+    // Initialize video stream
+    async function initVideo() {
+        try {
+            stream = await navigator.mediaDevices.getUserMedia({ 
+                video: { facingMode: 'user' },
+                audio: false 
+            });
+            const video = document.getElementById('videoElement');
+            const captureBtn = document.getElementById('captureBtn');
+            
+            video.srcObject = stream;
+            
+            // Wait for video metadata to load
+            video.addEventListener('loadedmetadata', function() {
+                if (video.videoWidth > 0 && video.videoHeight > 0) {
+                    videoReady = true;
+                    // Enable capture button once video is ready (only if user has avatar)
+                    if (captureBtn && userHasAvatar) {
+                        captureBtn.disabled = false;
+                    }
+                }
+            });
+            
+            // Also enable after canplay event (backup)
+            video.addEventListener('canplay', function() {
+                if (video.videoWidth > 0 && video.videoHeight > 0) {
+                    videoReady = true;
+                    if (captureBtn && userHasAvatar) {
+                        captureBtn.disabled = false;
+                    }
+                }
+            });
+            
+            // Initially disable capture button until video is ready (if user has avatar)
+            if (captureBtn && userHasAvatar && !videoReady) {
+                captureBtn.disabled = true;
+            }
+        } catch (error) {
+            showError('Error accessing camera: ' + error.message);
+            const captureBtn = document.getElementById('captureBtn');
+            if (captureBtn) {
+                captureBtn.disabled = true;
+            }
+        }
+    }
+    
+    // Capture face and verify
+    document.getElementById('captureBtn').addEventListener('click', async function() {
+        const video = document.getElementById('videoElement');
+        const canvas = document.getElementById('canvasElement');
+        
+        // Check if video stream is available
+        if (!stream || stream.getVideoTracks().length === 0) {
+            showError('Video stream not available. Please wait for the camera to initialize.');
+            return;
+        }
+        
+        // Check if video is ready and has valid dimensions
+        if (!video || video.readyState < 2) {
+            showError('Video is not ready yet. Please wait a moment and try again.');
+            return;
+        }
+        
+        // Check if video has valid dimensions
+        if (!video.videoWidth || !video.videoHeight || video.videoWidth === 0 || video.videoHeight === 0) {
+            showError('Video dimensions are invalid. Please wait for the video to load completely.');
+            return;
+        }
+        
+        const ctx = canvas.getContext('2d');
+        
+        try {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0);
+            
+            // Convert to base64
+            const faceImageData = canvas.toDataURL('image/jpeg');
+            
+            // Validate that we got image data
+            if (!faceImageData || faceImageData === 'data:,') {
+                showError('Failed to capture image. Please try again.');
+                return;
+            }
+            
+            // Show preview
+            document.getElementById('faceImagePreview').innerHTML = 
+                '<img src="' + faceImageData + '" style="max-width: 200px; border-radius: 0.5rem;">';
+            document.getElementById('faceResult').style.display = 'block';
+            document.getElementById('faceResultText').innerHTML = 
+                '<i class="fas fa-spinner fa-spin me-1"></i>Comparing with profile photo...';
+            
+            const response = await fetch('{% url "meetings:verify_face" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    face_image: faceImageData
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (data.success && data.matched) {
+                faceVerified = true;
+                document.getElementById('faceStep').classList.add('completed');
+                document.getElementById('faceStatus').textContent = 'Completed';
+                document.getElementById('faceStatus').classList.remove('pending');
+                document.getElementById('faceStatus').classList.add('completed');
+                document.getElementById('faceResultText').innerHTML = 
+                    '<span style="color: #10b981;"><i class="fas fa-check-circle me-1"></i>Face matches your profile photo!</span>';
+                
+                // Stop video stream
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                }
+                
+                // Move to next step
+                document.getElementById('networkStep').classList.add('active');
+                checkEnterButton();
+            } else {
+                document.getElementById('faceResultText').innerHTML = 
+                    '<span style="color: #ef4444;"><i class="fas fa-times-circle me-1"></i>' + 
+                    (data.error || 'Face does not match your profile photo. Please try again.') + '</span>';
+                faceVerified = false;
+            }
+        } catch (error) {
+            showError('Error verifying face: ' + error.message);
+            document.getElementById('faceResultText').innerHTML = 
+                '<span style="color: #ef4444;"><i class="fas fa-times-circle me-1"></i>Error: ' + error.message + '</span>';
+        }
+    });
+    
+    // Fullscreen verification
+    function checkFullscreen() {
+        const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || 
+                               document.mozFullScreenElement || document.msFullscreenElement);
+        
+        if (isFullscreen) {
+            fullscreenVerified = true;
+            document.getElementById('fullscreenStep').classList.add('completed');
+            document.getElementById('fullscreenStatus').textContent = 'Completed';
+            document.getElementById('fullscreenStatus').classList.remove('pending');
+            document.getElementById('fullscreenStatus').classList.add('completed');
+            document.getElementById('fullscreenWarning').innerHTML = 
+                '<i class="fas fa-check-circle me-2"></i>Fullscreen mode detected!';
+            document.getElementById('fullscreenWarning').classList.add('success');
+            checkEnterButton();
+        }
+        
+        return isFullscreen;
+    }
+    
+    document.getElementById('fullscreenBtn').addEventListener('click', function() {
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+    });
+    
+    // Listen for fullscreen changes
+    document.addEventListener('fullscreenchange', checkFullscreen);
+    document.addEventListener('webkitfullscreenchange', checkFullscreen);
+    document.addEventListener('mozfullscreenchange', checkFullscreen);
+    document.addEventListener('MSFullscreenChange', checkFullscreen);
+    
+    // Check on F11 key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'F11') {
+            e.preventDefault();
+            setTimeout(checkFullscreen, 100);
+        }
+    });
+    
+    // Captcha verification
+    document.getElementById('verifyCaptchaBtn').addEventListener('click', function() {
+        const input = document.getElementById('captchaInput').value.toUpperCase();
+        if (input === captchaCode) {
+            captchaVerified = true;
+            document.getElementById('captchaStep').classList.add('completed');
+            document.getElementById('captchaStatus').textContent = 'Completed';
+            document.getElementById('captchaStatus').classList.remove('pending');
+            document.getElementById('captchaStatus').classList.add('completed');
+            checkEnterButton();
+        } else {
+            showError('Invalid captcha code. Please try again.');
+            generateCaptcha();
+            document.getElementById('captchaInput').value = '';
+        }
+    });
+    
+    // Network speed test
+    let networkTestRunning = false;
+    
+    async function testNetworkSpeed() {
+        if (networkTestRunning) return;
+        
+        networkTestRunning = true;
+        const btn = document.getElementById('testNetworkBtn');
+        const spinner = document.getElementById('networkSpinner');
+        const results = document.getElementById('networkResults');
+        
+        btn.disabled = true;
+        spinner.style.display = 'block';
+        results.style.display = 'none';
+        
+        try {
+            // Test latency (ping) - use multiple attempts for accuracy
+            let latencyTotal = 0;
+            const latencyAttempts = 3;
+            
+            for (let i = 0; i < latencyAttempts; i++) {
+                const latencyStart = performance.now();
+                try {
+                    await fetch(window.location.origin + '?' + Date.now(), {
+                        method: 'HEAD',
+                        cache: 'no-cache',
+                        mode: 'no-cors'
+                    });
+                } catch (e) {
+                    // Try alternative method
+                    const img = new Image();
+                    img.src = window.location.origin + '/static/favicon.ico?' + Date.now();
+                    await new Promise((resolve, reject) => {
+                        img.onload = resolve;
+                        img.onerror = resolve; // Continue even if fails
+                        setTimeout(resolve, 1000);
+                    });
+                }
+                latencyTotal += performance.now() - latencyStart;
+            }
+            const latency = Math.round(latencyTotal / latencyAttempts);
+            
+            // Test download speed using a reliable CDN
+            const downloadStart = performance.now();
+            const downloadUrl = 'https://httpbin.org/bytes/500000'; // 500KB test file
+            
+            try {
+                const downloadResponse = await fetch(downloadUrl + '?cache=' + Date.now(), {
+                    cache: 'no-cache'
+                });
+                const downloadBlob = await downloadResponse.blob();
+                const downloadTime = (performance.now() - downloadStart) / 1000; // in seconds
+                const downloadSpeedMbps = ((downloadBlob.size * 8) / downloadTime / 1000000).toFixed(2);
+                
+                // Test upload speed using httpbin
+                const uploadStart = performance.now();
+                const uploadData = new ArrayBuffer(100000); // 100KB
+                try {
+                    await fetch('https://httpbin.org/post', {
+                        method: 'POST',
+                        body: uploadData,
+                        cache: 'no-cache'
+                    });
+                } catch (e) {
+                    // Fallback: estimate based on connection
+                    console.log('Upload test alternative method');
+                }
+                const uploadTime = (performance.now() - uploadStart) / 1000;
+                const uploadSpeedMbps = ((100000 * 8) / uploadTime / 1000000).toFixed(2);
+                
+                // Display results
+                document.getElementById('downloadSpeed').textContent = downloadSpeedMbps + ' Mbps';
+                document.getElementById('uploadSpeed').textContent = uploadSpeedMbps + ' Mbps';
+                document.getElementById('latency').textContent = latency + ' ms';
+                
+                results.style.display = 'block';
+                spinner.style.display = 'none';
+                
+                // Check if network speed meets requirements
+                const minDownloadSpeed = 1.0; // Minimum 1 Mbps download
+                const minUploadSpeed = 0.5; // Minimum 0.5 Mbps upload
+                const maxLatency = 500; // Maximum 500ms latency
+                
+                const downloadOk = parseFloat(downloadSpeedMbps) >= minDownloadSpeed;
+                const uploadOk = parseFloat(uploadSpeedMbps) >= minUploadSpeed;
+                const latencyOk = latency <= maxLatency;
+                
+                const statusMessage = document.getElementById('networkStatusMessage');
+                
+                if (downloadOk && uploadOk && latencyOk) {
+                    networkVerified = true;
+                    document.getElementById('networkStep').classList.add('completed');
+                    document.getElementById('networkStatus').textContent = 'Completed';
+                    document.getElementById('networkStatus').classList.remove('pending');
+                    document.getElementById('networkStatus').classList.add('completed');
+                    statusMessage.innerHTML = 
+                        '<div class="alert alert-success"><i class="fas fa-check-circle me-2"></i>Network speed is sufficient for video meetings!</div>';
+                    
+                    // Move to next step
+                    document.getElementById('captchaStep').classList.add('active');
+                    checkEnterButton();
+                } else {
+                    let warnings = [];
+                    if (!downloadOk) warnings.push(`Download speed should be at least ${minDownloadSpeed} Mbps`);
+                    if (!uploadOk) warnings.push(`Upload speed should be at least ${minUploadSpeed} Mbps`);
+                    if (!latencyOk) warnings.push(`Latency should be below ${maxLatency}ms`);
+                    
+                    statusMessage.innerHTML = 
+                        '<div class="alert alert-warning"><i class="fas fa-exclamation-triangle me-2"></i>' +
+                        'Network speed may be insufficient. Issues: ' + warnings.join(', ') + 
+                        '<br><small>You can still proceed, but you may experience quality issues.</small></div>';
+                    
+                    // Allow proceeding with warning
+                    networkVerified = true;
+                    document.getElementById('networkStep').classList.add('completed');
+                    document.getElementById('networkStatus').textContent = 'Warning';
+                    statusMessage.innerHTML += 
+                        '<button class="btn btn-sm btn-primary mt-2" onclick="proceedWithNetworkWarning()">Proceed Anyway</button>';
+                }
+            } catch (downloadError) {
+                // Fallback: Simple connection test
+                const connectionOk = navigator.onLine;
+                if (connectionOk) {
+                    document.getElementById('downloadSpeed').textContent = 'Unknown';
+                    document.getElementById('uploadSpeed').textContent = 'Unknown';
+                    document.getElementById('latency').textContent = latency + ' ms';
+                    
+                    results.style.display = 'block';
+                    spinner.style.display = 'none';
+                    
+                    networkVerified = true;
+                    document.getElementById('networkStep').classList.add('completed');
+                    document.getElementById('networkStatus').textContent = 'Completed';
+                    document.getElementById('networkStatus').classList.remove('pending');
+                    document.getElementById('networkStatus').classList.add('completed');
+                    document.getElementById('networkStatusMessage').innerHTML = 
+                        '<div class="alert alert-info"><i class="fas fa-info-circle me-2"></i>Connection detected. Speed test unavailable, but connection appears active.</div>';
+                    
+                    document.getElementById('captchaStep').classList.add('active');
+                    checkEnterButton();
+                } else {
+                    throw new Error('No internet connection detected');
+                }
+            }
+            
+            btn.disabled = false;
+            networkTestRunning = false;
+            
+        } catch (error) {
+            console.error('Network test error:', error);
+            spinner.style.display = 'none';
+            results.style.display = 'block';
+            document.getElementById('downloadSpeed').textContent = 'N/A';
+            document.getElementById('uploadSpeed').textContent = 'N/A';
+            document.getElementById('latency').textContent = 'N/A';
+            
+            const statusMessage = document.getElementById('networkStatusMessage');
+            statusMessage.innerHTML = 
+                '<div class="alert alert-info"><i class="fas fa-info-circle me-2"></i>' +
+                'Network test unavailable. Your connection will be tested during the meeting. You can proceed if you have a stable internet connection.</div>';
+            
+            // Allow proceeding - mark as verified with note
+            networkVerified = true;
+            document.getElementById('networkStep').classList.add('completed');
+            document.getElementById('networkStatus').textContent = 'Skipped';
+            statusMessage.innerHTML += 
+                '<button class="btn btn-sm btn-primary mt-2" onclick="proceedWithNetworkWarning()">Proceed</button>';
+            
+            btn.disabled = false;
+            networkTestRunning = false;
+        }
+    }
+    
+    function proceedWithNetworkWarning() {
+        networkVerified = true;
+        document.getElementById('networkStatus').textContent = 'Warning';
+        document.getElementById('captchaStep').classList.add('active');
+        checkEnterButton();
+    }
+    
+    document.getElementById('testNetworkBtn').addEventListener('click', testNetworkSpeed);
+    
+    // Check if all verifications are complete
+    function checkEnterButton() {
+        if (faceVerified && fullscreenVerified && networkVerified && captchaVerified) {
+            document.getElementById('enterMeetingBtn').disabled = false;
+        }
+    }
+    
+    // Enter meeting
+    document.getElementById('enterMeetingBtn').addEventListener('click', async function() {
+        this.disabled = true;
+        this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Entering Meeting...';
+        
+        try {
+            const response = await fetch('{% url "meetings:verify_and_enter" meeting.pk %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    face_match: faceVerified,
+                    is_fullscreen: fullscreenVerified,
+                    network_verified: networkVerified,
+                    captcha_verified: captchaVerified
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                window.location.href = data.redirect_url;
+            } else {
+                showError(data.error || 'Verification failed. Please try again.');
+                this.disabled = false;
+                this.innerHTML = '<i class="fas fa-sign-in-alt me-2"></i>Enter Meeting';
+            }
+        } catch (error) {
+            showError('Error entering meeting: ' + error.message);
+            this.disabled = false;
+            this.innerHTML = '<i class="fas fa-sign-in-alt me-2"></i>Enter Meeting';
+        }
+    });
+    
+    function showError(message) {
+        const errorDiv = document.getElementById('errorMessage');
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block';
+        setTimeout(() => {
+            errorDiv.style.display = 'none';
+        }, 5000);
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        generateCaptcha();
+        initVideo();
+        
+        // Check fullscreen on load (in case already in fullscreen)
+        setTimeout(checkFullscreen, 500);
+    });
+    
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', function() {
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+        }
+    });
+</script>
+{% endblock %}
+

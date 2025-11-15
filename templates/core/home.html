@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Online Interview Platform{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="hero-title">
+                    Connect Anywhere,<br>
+                    <span class="text-warning">Anytime</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Professional video conferencing platform for seamless collaboration. 
+                    Perfect for remote work, education, and business meetings.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'meetings:meeting_create' %}" class="btn btn-light btn-lg">
+                            <i class="fas fa-plus me-2"></i> Create Meeting
+                        </a>
+                        <a href="{% url 'meetings:join_meeting' %}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-sign-in-alt me-2"></i> Join Meeting
+                        </a>
+                    {% else %}
+                        <a href="{% url 'accounts:register' %}" class="btn btn-light btn-lg">
+                            <i class="fas fa-rocket me-2"></i> Get Started Free
+                        </a>
+                        <a href="{% url 'accounts:login' %}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-sign-in-alt me-2"></i> Sign In
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="position-relative">
+                    <div class="hero-video-container">
+                        <i class="fas fa-video fa-10x opacity-25"></i>
+                    </div>
+                    <div class="floating-elements">
+                        <div class="floating-icon floating-1">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="floating-icon floating-2">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <div class="floating-icon floating-3">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- Features Section -->
+    <div class="row py-5">
+        <div class="col-12 text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3">Why Choose Our Platform?</h2>
+            <p class="lead text-muted">Powerful features designed for modern collaboration</p>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h5 class="fw-bold mb-3">HD Video & Audio</h5>
+                <p class="text-muted">Crystal clear video and audio quality with advanced noise cancellation for seamless communication.</p>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-share-alt"></i>
+                </div>
+                <h5 class="fw-bold mb-3">Screen Sharing</h5>
+                <p class="text-muted">Share your screen, applications, or specific windows with participants for enhanced collaboration.</p>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h5 class="fw-bold mb-3">Real-time Chat</h5>
+                <p class="text-muted">Instant messaging during meetings with file sharing and emoji reactions.</p>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar"></i>
+                </div>
+                <h5 class="fw-bold mb-3">Smart Scheduling</h5>
+                <p class="text-muted">Schedule meetings in advance with automatic calendar integration and email reminders.</p>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-record-vinyl"></i>
+                </div>
+                <h5 class="fw-bold mb-3">Meeting Recording</h5>
+                <p class="text-muted">Record meetings in high quality and share them securely with your team.</p>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h5 class="fw-bold mb-3">Enterprise Security</h5>
+                <p class="text-muted">End-to-end encryption, password protection, and advanced security features.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="row py-5">
+        <div class="col-12 text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3">Meet the Team</h2>
+            <p class="lead text-muted">The talented individuals behind this platform</p>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h5 class="fw-bold mb-3">Chandrakanth B S</h5>
+                <p class="text-muted">1RN23CS054</p>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h5 class="fw-bold mb-3">Manohara S</h5>
+                <p class="text-muted">1RN23CS255</p>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h5 class="fw-bold mb-3">Anurag sahu</h5>
+                <p class="text-muted">1Rn23CS030</p>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h5 class="fw-bold mb-3">B Ankitha</h5>
+                <p class="text-muted">1RN23CS030</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Meetings (for authenticated users) -->
+    {% if user.is_authenticated and recent_meetings %}
+    <div class="row py-5">
+        <div class="col-12">
+            <div class="text-center mb-5">
+                <h3 class="display-6 fw-bold mb-3">Your Recent Meetings</h3>
+                <p class="lead text-muted">Quick access to your latest meetings</p>
+            </div>
+            <div class="row">
+                {% for meeting in recent_meetings %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card meeting-card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex align-items-start justify-content-between mb-3">
+                                <h6 class="card-title fw-bold mb-0">{{ meeting.title }}</h6>
+                                <span class="badge bg-{% if meeting.status == 'active' %}success{% elif meeting.status == 'scheduled' %}warning{% else %}secondary{% endif %} status-badge">
+                                    {{ meeting.get_status_display }}
+                                </span>
+                            </div>
+                            <p class="card-text text-muted flex-grow-1">{{ meeting.description|truncatechars:80 }}</p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <small class="text-muted">
+                                    <i class="fas fa-calendar-alt me-1"></i>
+                                    {{ meeting.scheduled_time|date:"M d, Y H:i" }}
+                                </small>
+                                <a href="{% url 'meetings:meeting_detail' meeting.pk %}" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-eye me-1"></i> View
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+

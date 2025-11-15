@@ -1,0 +1,1329 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ meeting.title }} - Meeting Room{% endblock %}
+
+{% block extra_css %}
+<style>
+    .meeting-container {
+        height: 100vh;
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        color: white;
+        overflow: hidden;
+    }
+    
+    .meeting-header {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1rem 2rem;
+    }
+    
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
+        height: calc(100vh - 180px);
+        overflow-y: auto;
+    }
+    
+    .video-container {
+        position: relative;
+        background: #000;
+        border-radius: 1rem;
+        overflow: hidden;
+        min-height: 240px;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    }
+    
+    .video-container:hover {
+        border-color: var(--primary-color);
+        transform: scale(1.02);
+    }
+    
+    .video-container.active {
+        border-color: var(--success-color);
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+    }
+    
+    .video-container.screen-share {
+        grid-column: 1 / -1;
+        min-height: 400px;
+        border-color: var(--warning-color);
+        box-shadow: 0 0 30px rgba(251, 191, 36, 0.4);
+    }
+    
+    .video-element {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .video-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        padding: 1rem;
+        color: white;
+    }
+    
+    .participant-name {
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    
+    .participant-status {
+        font-size: 0.75rem;
+        opacity: 0.8;
+    }
+    
+    .video-controls {
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.9);
+        border-radius: 2rem;
+        padding: 1rem 2rem;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    }
+    
+    .control-btn {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: white;
+    }
+    
+    .control-btn:hover {
+        transform: scale(1.1);
+    }
+    
+    .control-btn.mic-btn {
+        background: #374151;
+    }
+    
+    .control-btn.mic-btn.muted {
+        background: var(--danger-color);
+    }
+    
+    .control-btn.video-btn {
+        background: #374151;
+    }
+    
+    .control-btn.video-btn.disabled {
+        background: var(--danger-color);
+    }
+    
+    .control-btn.screen-btn {
+        background: #374151;
+    }
+    
+    .control-btn.screen-btn.active {
+        background: var(--primary-color);
+    }
+    
+    .control-btn.leave-btn {
+        background: var(--danger-color);
+    }
+    
+    .control-btn.chat-btn {
+        background: #374151;
+    }
+    
+    .control-btn.chat-btn.active {
+        background: var(--primary-color);
+    }
+    
+    .sidebar {
+        position: fixed;
+        right: -400px;
+        top: 0;
+        width: 400px;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        transition: right 0.3s ease;
+        z-index: 1000;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .sidebar.active {
+        right: 0;
+    }
+    
+    .sidebar-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .sidebar-content {
+        height: calc(100vh - 120px);
+        overflow-y: auto;
+        padding: 1rem;
+    }
+    
+    .chat-message {
+        margin-bottom: 1rem;
+        padding: 0.75rem 1rem;
+        border-radius: 1rem;
+        max-width: 85%;
+        word-wrap: break-word;
+    }
+    
+    .chat-message.sent {
+        background: var(--primary-color);
+        color: white;
+        margin-left: auto;
+    }
+    
+    .chat-message.received {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+    
+    .message-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.25rem;
+        font-size: 0.85rem;
+    }
+    
+    .message-content {
+        word-wrap: break-word;
+        line-height: 1.4;
+    }
+    
+    #chatMessages {
+        padding: 1rem;
+        height: 100%;
+        overflow-y: auto;
+    }
+    
+    #messageTypeSelector .btn {
+        flex: 1;
+    }
+    
+    #recipientSelector {
+        margin-top: 0.5rem;
+    }
+    
+    .chat-input {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.9);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .meeting-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .meeting-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0;
+    }
+    
+    .meeting-participant-count {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.875rem;
+    }
+    
+    .recording-indicator {
+        background: var(--danger-color);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+        to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+    
+    @keyframes fadeOut {
+        from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        to { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+    }
+    
+    @media (max-width: 768px) {
+        .video-grid {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+            padding: 0.5rem;
+        }
+        
+        .video-container {
+            min-height: 200px;
+        }
+        
+        .video-controls {
+            bottom: 1rem;
+            padding: 0.75rem 1rem;
+            gap: 0.5rem;
+        }
+        
+        .control-btn {
+            width: 48px;
+            height: 48px;
+            font-size: 16px;
+        }
+        
+        .sidebar {
+            width: 100%;
+            right: -100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="meeting-container" id="meetingContainer">
+    <!-- Meeting Header -->
+    <div class="meeting-header">
+        <div class="meeting-info">
+            <h1 class="meeting-title">{{ meeting.title }}</h1>
+            <div class="meeting-participant-count">
+                <i class="fas fa-users me-1"></i>
+                <span id="participantCount">1</span>
+            </div>
+            {% if is_host %}
+            <div class="recording-indicator" id="recordingIndicator" style="display: none;">
+                <i class="fas fa-circle me-1"></i> Recording
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Video Grid -->
+    <div class="video-grid" id="videoGrid">
+        <!-- Screen share video (shown when active) -->
+        <div class="video-container active" id="screenShareContainer" style="display: none;">
+            <video id="screenShareVideo" autoplay class="video-element"></video>
+            <div class="video-overlay">
+                <div class="participant-name">
+                    <i class="fas fa-desktop me-2"></i>Screen Share - You
+                </div>
+                <div class="participant-status">
+                    <span class="badge bg-warning">Live</span>
+                </div>
+            </div>
+        </div>
+        <!-- Local video -->
+        <div class="video-container active" id="localVideoContainer">
+            <video id="localVideo" autoplay muted class="video-element"></video>
+            <div class="video-overlay">
+                <div class="participant-name">You</div>
+                <div class="participant-status" id="localParticipantStatus">
+                    <i class="fas fa-microphone text-success me-1" id="localMicIcon"></i>
+                    <i class="fas fa-video text-success" id="localVideoIcon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Controls -->
+    <div class="video-controls">
+        <button class="control-btn mic-btn" id="micBtn" title="Mute/Unmute">
+            <i class="fas fa-microphone"></i>
+        </button>
+        <button class="control-btn video-btn" id="videoBtn" title="Turn on/off camera">
+            <i class="fas fa-video"></i>
+        </button>
+        <button class="control-btn screen-btn" id="screenBtn" title="Share screen">
+            <i class="fas fa-desktop"></i>
+        </button>
+        <button class="control-btn screen-btn" id="stopScreenBtn" title="Stop sharing" style="display: none; background: var(--danger-color);">
+            <i class="fas fa-stop"></i>
+        </button>
+        <button class="control-btn chat-btn" id="chatBtn" title="Chat">
+            <i class="fas fa-comments"></i>
+        </button>
+        {% if is_host %}
+        <button class="control-btn" id="recordBtn" title="Start/Stop recording">
+            <i class="fas fa-record-vinyl"></i>
+        </button>
+        {% endif %}
+        <button class="control-btn leave-btn" id="leaveBtn" title="Leave meeting">
+            <i class="fas fa-phone-slash"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar for Chat and Participants -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="mb-0" id="sidebarTitle">Chat</h5>
+                    <small class="text-muted" id="chatMode" style="font-size: 0.75rem;">Public Message</small>
+                </div>
+                <button class="btn btn-sm btn-outline-light" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <!-- Message Type Selection -->
+            <div class="mt-2" id="messageTypeSelector" style="display: none;">
+                <div class="btn-group w-100" role="group">
+                    <button type="button" class="btn btn-sm btn-outline-light active" id="publicMsgBtn" onclick="setMessageType('public')">
+                        <i class="fas fa-globe me-1"></i> Public
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-light" id="privateMsgBtn" onclick="setMessageType('private')">
+                        <i class="fas fa-user-lock me-1"></i> Private
+                    </button>
+                </div>
+            </div>
+            <!-- Participant Selector for Private Messages -->
+            <div class="mt-2" id="recipientSelector" style="display: none;">
+                <select class="form-select form-select-sm" id="recipientSelect">
+                    <option value="">Select participant...</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="sidebar-content" id="sidebarContent">
+            <!-- Chat messages will be loaded here -->
+            <div id="chatMessages"></div>
+        </div>
+        
+        <div class="chat-input" id="chatInput" style="display: none;">
+            <div class="input-group">
+                <input type="text" class="form-control" id="messageInput" placeholder="Type a message...">
+                <button class="btn btn-primary" id="sendBtn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Meeting room JavaScript
+    let fullscreenCheckInterval;
+    let fullscreenExitTimer = null;
+    let fullscreenCountdown = null;
+    let localStream = null;
+    let screenStream = null;
+    let audioEnabled = true;
+    let videoEnabled = true;
+    let isScreenSharing = false;
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeMeetingRoom();
+        enforceFullscreen();
+    });
+    
+    function initializeMeetingRoom() {
+        // Request fullscreen immediately with delay to ensure page is loaded
+        setTimeout(() => {
+            requestFullscreen();
+        }, 500);
+        
+        // Get user media for local video
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+            .then(function(stream) {
+                localStream = stream;
+                const localVideo = document.getElementById('localVideo');
+                localVideo.srcObject = stream;
+                
+                // Get initial track states
+                const videoTrack = stream.getVideoTracks()[0];
+                const audioTrack = stream.getAudioTracks()[0];
+                
+                if (videoTrack) {
+                    videoEnabled = videoTrack.enabled;
+                }
+                if (audioTrack) {
+                    audioEnabled = audioTrack.enabled;
+                }
+                
+                // Update UI to reflect actual state
+                updateMediaButtonsUI();
+            })
+            .catch(function(error) {
+                console.error('Error accessing media devices:', error);
+                showError('Failed to access camera/microphone: ' + error.message);
+            });
+        
+        initializeControls();
+        
+        // Monitor fullscreen status continuously
+        fullscreenCheckInterval = setInterval(checkFullscreenStatus, 500);
+        
+        // Check initial fullscreen status
+        checkFullscreenStatus();
+    }
+    
+    function showError(message) {
+        const errorDiv = document.createElement('div');
+        errorDiv.style.cssText = 'position: fixed; top: 20px; left: 50%; transform: translateX(-50%); ' +
+                                'background: rgba(239, 68, 68, 0.95); color: white; padding: 1rem 2rem; ' +
+                                'border-radius: 0.5rem; z-index: 10001; box-shadow: 0 4px 6px rgba(0,0,0,0.3);';
+        errorDiv.textContent = message;
+        document.body.appendChild(errorDiv);
+        setTimeout(() => errorDiv.remove(), 5000);
+    }
+    
+    function updateMediaButtonsUI() {
+        const micBtn = document.getElementById('micBtn');
+        const videoBtn = document.getElementById('videoBtn');
+        const micIcon = micBtn.querySelector('i');
+        const videoIcon = videoBtn.querySelector('i');
+        
+        // Update microphone button
+        if (audioEnabled) {
+            micIcon.classList.remove('fa-microphone-slash');
+            micIcon.classList.add('fa-microphone');
+            micBtn.classList.remove('muted');
+        } else {
+            micIcon.classList.remove('fa-microphone');
+            micIcon.classList.add('fa-microphone-slash');
+            micBtn.classList.add('muted');
+        }
+        
+        // Update video button
+        if (videoEnabled) {
+            videoIcon.classList.remove('fa-video-slash');
+            videoIcon.classList.add('fa-video');
+            videoBtn.classList.remove('disabled');
+        } else {
+            videoIcon.classList.remove('fa-video');
+            videoIcon.classList.add('fa-video-slash');
+            videoBtn.classList.add('disabled');
+        }
+        
+        // Update participant status overlay
+        const localMicIcon = document.getElementById('localMicIcon');
+        const localVideoIcon = document.getElementById('localVideoIcon');
+        
+        if (localMicIcon) {
+            if (audioEnabled) {
+                localMicIcon.classList.remove('text-danger');
+                localMicIcon.classList.add('text-success');
+                localMicIcon.classList.remove('fa-microphone-slash');
+                localMicIcon.classList.add('fa-microphone');
+            } else {
+                localMicIcon.classList.remove('text-success');
+                localMicIcon.classList.add('text-danger');
+                localMicIcon.classList.remove('fa-microphone');
+                localMicIcon.classList.add('fa-microphone-slash');
+            }
+        }
+        
+        if (localVideoIcon) {
+            if (videoEnabled) {
+                localVideoIcon.classList.remove('text-danger');
+                localVideoIcon.classList.add('text-success');
+                localVideoIcon.classList.remove('fa-video-slash');
+                localVideoIcon.classList.add('fa-video');
+            } else {
+                localVideoIcon.classList.remove('text-success');
+                localVideoIcon.classList.add('text-danger');
+                localVideoIcon.classList.remove('fa-video');
+                localVideoIcon.classList.add('fa-video-slash');
+            }
+        }
+    }
+    
+    function requestFullscreen() {
+        const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || 
+                               document.mozFullScreenElement || document.msFullscreenElement);
+        
+        if (isFullscreen) {
+            hideFullscreenWarning();
+            return;
+        }
+        
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen().catch(err => {
+                console.log('Fullscreen request denied:', err);
+                // If request fails, show warning
+                if (!warningShown) {
+                    showFullscreenWarning();
+                }
+            });
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        } else {
+            // Browser doesn't support fullscreen API
+            if (!warningShown) {
+                showFullscreenWarning();
+            }
+        }
+    }
+    
+    let warningShown = false;
+    let isFullscreenMode = false;
+    
+    function enforceFullscreen() {
+        // Listen for fullscreen exit attempts
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+        document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+        document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+        
+        // Prevent ESC key from exiting fullscreen
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F11') {
+                e.preventDefault();
+                requestFullscreen();
+            }
+            // Prevent ESC from exiting fullscreen
+            if (e.key === 'Escape') {
+                const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || 
+                                       document.mozFullScreenElement || document.msFullscreenElement);
+                if (isFullscreen) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    // Show message that user must leave meeting to exit fullscreen
+                    showNotification('To exit fullscreen, you must leave the meeting by clicking the Leave button.');
+                }
+            }
+        });
+    }
+    
+    function handleFullscreenChange() {
+        const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || 
+                               document.mozFullScreenElement || document.msFullscreenElement);
+        
+        isFullscreenMode = isFullscreen;
+        
+        if (isFullscreen) {
+            // Fullscreen is enabled - cancel any pending exit timer
+            cancelFullscreenExitTimer();
+            hideFullscreenWarning();
+            hideFullscreenCountdown();
+        } else {
+            // Fullscreen was exited - start 10-second countdown
+            startFullscreenExitCountdown();
+        }
+    }
+    
+    function checkFullscreenStatus() {
+        const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || 
+                               document.mozFullScreenElement || document.msFullscreenElement);
+        
+        isFullscreenMode = isFullscreen;
+        
+        if (!isFullscreen) {
+            // Fullscreen is lost - start 10-second countdown
+            // Only start if not already counting down
+            if (!fullscreenExitTimer) {
+                startFullscreenExitCountdown();
+            }
+        } else {
+            // Fullscreen is active - cancel any pending exit timer
+            cancelFullscreenExitTimer();
+            hideFullscreenWarning();
+            hideFullscreenCountdown();
+        }
+    }
+    
+    function startFullscreenExitCountdown() {
+        // Clear any existing timer
+        cancelFullscreenExitTimer();
+        
+        let secondsRemaining = 10;
+        showFullscreenCountdown(secondsRemaining);
+        
+        // Update countdown every second
+        fullscreenCountdown = setInterval(() => {
+            secondsRemaining--;
+            
+            if (secondsRemaining > 0) {
+                // Check if fullscreen was re-enabled
+                const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || 
+                                       document.mozFullScreenElement || document.msFullscreenElement);
+                
+                if (isFullscreen) {
+                    // Fullscreen was re-enabled, cancel the exit
+                    cancelFullscreenExitTimer();
+                    hideFullscreenCountdown();
+                    showNotification('Fullscreen mode restored. Meeting will continue.');
+                    return;
+                }
+                
+                // Update countdown display
+                showFullscreenCountdown(secondsRemaining);
+            } else {
+                // Time is up - exit the meeting
+                cancelFullscreenExitTimer();
+                hideFullscreenCountdown();
+                showError('Fullscreen mode is required. Exiting the meeting...');
+                leaveMeetingAutomatic();
+            }
+        }, 1000);
+        
+        // Set the main exit timer
+        fullscreenExitTimer = setTimeout(() => {
+            if (fullscreenCountdown) {
+                clearInterval(fullscreenCountdown);
+                fullscreenCountdown = null;
+            }
+            hideFullscreenCountdown();
+            leaveMeetingAutomatic();
+        }, 10000);
+    }
+    
+    function cancelFullscreenExitTimer() {
+        if (fullscreenExitTimer) {
+            clearTimeout(fullscreenExitTimer);
+            fullscreenExitTimer = null;
+        }
+        if (fullscreenCountdown) {
+            clearInterval(fullscreenCountdown);
+            fullscreenCountdown = null;
+        }
+    }
+    
+    function showFullscreenCountdown(seconds) {
+        // Remove any existing countdown
+        hideFullscreenCountdown();
+        
+        const countdownDiv = document.createElement('div');
+        countdownDiv.id = 'fullscreenCountdown';
+        countdownDiv.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); ' +
+                                    'background: rgba(239, 68, 68, 0.95); color: white; padding: 2rem; ' +
+                                    'border-radius: 1rem; z-index: 10001; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); ' +
+                                    'animation: fadeIn 0.3s ease; min-width: 300px;';
+        countdownDiv.innerHTML = '<h3><i class="fas fa-exclamation-triangle me-2"></i>Fullscreen Required</h3>' +
+                               '<p style="margin: 1rem 0; font-size: 1.1rem;">Please re-enable fullscreen mode</p>' +
+                               '<div style="font-size: 3rem; font-weight: bold; margin: 1rem 0; color: #fef3c7;">' + seconds + '</div>' +
+                               '<p style="margin: 1rem 0; font-size: 0.9rem; opacity: 0.9;">Seconds remaining before meeting ends</p>';
+        
+        document.body.appendChild(countdownDiv);
+    }
+    
+    function hideFullscreenCountdown() {
+        const countdownDiv = document.getElementById('fullscreenCountdown');
+        if (countdownDiv) {
+            countdownDiv.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => {
+                countdownDiv.remove();
+            }, 300);
+        }
+    }
+    
+    function showFullscreenWarning() {
+        // Only show if not already shown and not in fullscreen
+        if (warningShown || isFullscreenMode) return;
+        
+        warningShown = true;
+        const warning = document.createElement('div');
+        warning.id = 'fullscreenWarning';
+        warning.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); ' +
+                               'background: rgba(239, 68, 68, 0.95); color: white; padding: 2rem; ' +
+                               'border-radius: 1rem; z-index: 10000; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); ' +
+                               'animation: fadeIn 0.3s ease;';
+        warning.innerHTML = '<h3><i class="fas fa-exclamation-triangle me-2"></i>Fullscreen Required</h3>' +
+                           '<p style="margin: 1rem 0;">This meeting requires fullscreen mode to continue.</p>' +
+                           '<p style="font-size: 0.9rem; opacity: 0.9;">Fullscreen will be enabled automatically...</p>';
+        
+        document.body.appendChild(warning);
+    }
+    
+    function hideFullscreenWarning() {
+        const warning = document.getElementById('fullscreenWarning');
+        if (warning) {
+            warning.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => {
+                warning.remove();
+                warningShown = false;
+            }, 300);
+        } else {
+            warningShown = false;
+        }
+    }
+    
+    function initializeControls() {
+        const micBtn = document.getElementById('micBtn');
+        const videoBtn = document.getElementById('videoBtn');
+        const screenBtn = document.getElementById('screenBtn');
+        const stopScreenBtn = document.getElementById('stopScreenBtn');
+        const chatBtn = document.getElementById('chatBtn');
+        const leaveBtn = document.getElementById('leaveBtn');
+        const closeSidebar = document.getElementById('closeSidebar');
+        
+        micBtn.addEventListener('click', toggleMicrophone);
+        videoBtn.addEventListener('click', toggleVideo);
+        screenBtn.addEventListener('click', startScreenShare);
+        stopScreenBtn.addEventListener('click', stopScreenShare);
+        chatBtn.addEventListener('click', toggleChat);
+        leaveBtn.addEventListener('click', leaveMeeting);
+        closeSidebar.addEventListener('click', closeSidebarPanel);
+    }
+    
+    async function startScreenShare() {
+        try {
+            // Request screen share
+            screenStream = await navigator.mediaDevices.getDisplayMedia({
+                video: {
+                    cursor: "always",
+                    displaySurface: "browser"
+                },
+                audio: true
+            });
+            
+            // Handle user stopping screen share via browser UI
+            screenStream.getVideoTracks()[0].addEventListener('ended', () => {
+                stopScreenShare();
+            });
+            
+            // Display screen share video
+            const screenShareVideo = document.getElementById('screenShareVideo');
+            screenShareVideo.srcObject = screenStream;
+            
+            // Show screen share container and make it prominent
+            const screenShareContainer = document.getElementById('screenShareContainer');
+            const localVideoContainer = document.getElementById('localVideoContainer');
+            
+            screenShareContainer.style.display = 'block';
+            screenShareContainer.classList.add('active');
+            localVideoContainer.style.opacity = '0.7';
+            localVideoContainer.style.order = '2';
+            screenShareContainer.style.order = '1';
+            
+            // Update UI
+            const screenBtn = document.getElementById('screenBtn');
+            const stopScreenBtn = document.getElementById('stopScreenBtn');
+            screenBtn.style.display = 'none';
+            stopScreenBtn.style.display = 'flex';
+            stopScreenBtn.classList.add('active');
+            
+            isScreenSharing = true;
+            showNotification('Screen sharing started');
+            
+        } catch (error) {
+            console.error('Error starting screen share:', error);
+            if (error.name === 'NotAllowedError') {
+                showError('Screen sharing permission denied. Please allow screen sharing.');
+            } else if (error.name === 'NotFoundError') {
+                showError('No screen share source found.');
+            } else {
+                showError('Failed to start screen sharing: ' + error.message);
+            }
+        }
+    }
+    
+    function stopScreenShare() {
+        if (screenStream) {
+            // Stop all tracks in the screen share stream
+            screenStream.getTracks().forEach(track => {
+                track.stop();
+            });
+            screenStream = null;
+        }
+        
+        // Hide screen share container
+        const screenShareContainer = document.getElementById('screenShareContainer');
+        const screenShareVideo = document.getElementById('screenShareVideo');
+        const localVideoContainer = document.getElementById('localVideoContainer');
+        
+        screenShareContainer.style.display = 'none';
+        screenShareVideo.srcObject = null;
+        localVideoContainer.style.opacity = '1';
+        localVideoContainer.style.order = '1';
+        
+        // Update UI
+        const screenBtn = document.getElementById('screenBtn');
+        const stopScreenBtn = document.getElementById('stopScreenBtn');
+        screenBtn.style.display = 'flex';
+        stopScreenBtn.style.display = 'none';
+        stopScreenBtn.classList.remove('active');
+        
+        isScreenSharing = false;
+        showNotification('Screen sharing stopped');
+    }
+    
+    function toggleMicrophone() {
+        if (!localStream) {
+            showError('Media stream not available');
+            return;
+        }
+        
+        const audioTracks = localStream.getAudioTracks();
+        if (audioTracks.length === 0) {
+            showError('No audio track available');
+            return;
+        }
+        
+        // Toggle audio track
+        audioEnabled = !audioEnabled;
+        audioTracks.forEach(track => {
+            track.enabled = audioEnabled;
+        });
+        
+        // Update UI
+        updateMediaButtonsUI();
+        
+        // Show notification
+        const notification = audioEnabled ? 'Microphone enabled' : 'Microphone muted';
+        showNotification(notification);
+    }
+    
+    function toggleVideo() {
+        if (!localStream) {
+            showError('Media stream not available');
+            return;
+        }
+        
+        const videoTracks = localStream.getVideoTracks();
+        if (videoTracks.length === 0) {
+            showError('No video track available');
+            return;
+        }
+        
+        // Toggle video track
+        videoEnabled = !videoEnabled;
+        videoTracks.forEach(track => {
+            track.enabled = videoEnabled;
+        });
+        
+        // Update video element visibility
+        const localVideo = document.getElementById('localVideo');
+        if (videoEnabled) {
+            localVideo.style.opacity = '1';
+        } else {
+            localVideo.style.opacity = '0.3';
+            // Optionally show a placeholder when video is off
+            localVideo.style.backgroundColor = '#000';
+        }
+        
+        // Update UI
+        updateMediaButtonsUI();
+        
+        // Show notification
+        const notification = videoEnabled ? 'Camera enabled' : 'Camera disabled';
+        showNotification(notification);
+    }
+    
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.style.cssText = 'position: fixed; top: 80px; left: 50%; transform: translateX(-50%); ' +
+                                    'background: rgba(59, 130, 246, 0.95); color: white; padding: 0.75rem 1.5rem; ' +
+                                    'border-radius: 0.5rem; z-index: 10001; box-shadow: 0 4px 6px rgba(0,0,0,0.3); ' +
+                                    'animation: fadeIn 0.3s ease; font-size: 0.9rem;';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            notification.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 2000);
+    }
+    
+    let chatSocket = null;
+    let currentMessageType = 'public'; // 'public' or 'private'
+    let selectedRecipient = null;
+    let meetingParticipants = [];
+    
+    function toggleChat() {
+        const chatBtn = document.getElementById('chatBtn');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarTitle = document.getElementById('sidebarTitle');
+        const chatInput = document.getElementById('chatInput');
+        const messageTypeSelector = document.getElementById('messageTypeSelector');
+        
+        chatBtn.classList.toggle('active');
+        sidebar.classList.toggle('active');
+        
+        if (sidebar.classList.contains('active')) {
+            sidebarTitle.textContent = 'Chat';
+            chatInput.style.display = 'block';
+            messageTypeSelector.style.display = 'block';
+            initializeChat();
+        } else {
+            chatInput.style.display = 'none';
+            messageTypeSelector.style.display = 'none';
+            if (chatSocket) {
+                chatSocket.close();
+                chatSocket = null;
+            }
+        }
+    }
+    
+    function setMessageType(type) {
+        currentMessageType = type;
+        const publicBtn = document.getElementById('publicMsgBtn');
+        const privateBtn = document.getElementById('privateMsgBtn');
+        const recipientSelector = document.getElementById('recipientSelector');
+        const chatMode = document.getElementById('chatMode');
+        const messageInput = document.getElementById('messageInput');
+        
+        if (type === 'public') {
+            publicBtn.classList.add('active');
+            privateBtn.classList.remove('active');
+            recipientSelector.style.display = 'none';
+            chatMode.textContent = 'Public Message';
+            messageInput.placeholder = 'Type a public message...';
+            selectedRecipient = null;
+        } else {
+            publicBtn.classList.remove('active');
+            privateBtn.classList.add('active');
+            recipientSelector.style.display = 'block';
+            chatMode.textContent = 'Private Message';
+            messageInput.placeholder = 'Type a private message...';
+            loadParticipants();
+        }
+    }
+    
+    function loadParticipants() {
+        const recipientSelect = document.getElementById('recipientSelect');
+        recipientSelect.innerHTML = '<option value="">Select participant...</option>';
+        
+        // Get current user ID from context
+        const currentUserId = {{ user.id }};
+        
+        meetingParticipants.forEach(participant => {
+            if (participant.id !== currentUserId) {
+                const option = document.createElement('option');
+                option.value = participant.id;
+                option.textContent = participant.full_name || participant.username;
+                recipientSelect.appendChild(option);
+            }
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const recipientSelect = document.getElementById('recipientSelect');
+        if (recipientSelect) {
+            recipientSelect.addEventListener('change', function() {
+                selectedRecipient = this.value;
+                const chatMode = document.getElementById('chatMode');
+                const selectedOption = this.options[this.selectedIndex];
+                if (selectedRecipient) {
+                    chatMode.textContent = `Private to ${selectedOption.textContent}`;
+                } else {
+                    chatMode.textContent = 'Private Message';
+                }
+            });
+        }
+    });
+    
+    function initializeChat() {
+        const meetingId = '{{ meeting.id }}';
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const wsUrl = `${protocol}//${window.location.host}/ws/chat/${meetingId}/`;
+        
+        chatSocket = new WebSocket(wsUrl);
+        
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            
+            if (data.type === 'chat_message') {
+                displayMessage(data.message);
+            } else if (data.type === 'participants_list') {
+                meetingParticipants = data.participants || [];
+                loadParticipants();
+            }
+        };
+        
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+        
+        chatSocket.onopen = function(e) {
+            // Load previous messages
+            loadChatMessages();
+        };
+    }
+    
+    function loadChatMessages() {
+        // Load previous messages via AJAX
+        fetch('{% url "meetings:get_meeting_messages" meeting.pk %}')
+            .then(response => response.json())
+            .then(data => {
+                if (data.messages) {
+                    const chatMessages = document.getElementById('chatMessages');
+                    chatMessages.innerHTML = ''; // Clear existing messages
+                    data.messages.forEach(message => {
+                        displayMessage(message);
+                    });
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            })
+            .catch(error => {
+                console.error('Error loading messages:', error);
+            });
+        
+        // Also load participants for recipient selection
+        fetch('{% url "meetings:get_meeting_participants" meeting.pk %}')
+            .then(response => response.json())
+            .then(data => {
+                if (data.participants) {
+                    meetingParticipants = data.participants;
+                    loadParticipants();
+                }
+            })
+            .catch(error => {
+                console.error('Error loading participants:', error);
+            });
+    }
+    
+    function displayMessage(message) {
+        const currentUserId = {{ user.id }};
+        const chatMessages = document.getElementById('chatMessages');
+        const messageDiv = document.createElement('div');
+        
+        const isPrivate = message.recipient_id !== null;
+        const isSentByMe = message.sender_id === currentUserId;
+        const isForMe = message.recipient_id === currentUserId;
+        
+        // Only show public messages or private messages for/to current user
+        if (!isPrivate || isSentByMe || isForMe) {
+            messageDiv.className = `chat-message ${isSentByMe ? 'sent' : 'received'}`;
+            
+            if (isPrivate) {
+                if (isSentByMe) {
+                    messageDiv.innerHTML = `
+                        <div class="message-header">
+                            <strong>${message.sender_full_name || message.sender}</strong>
+                            <span class="badge bg-info ms-2">Private to ${message.recipient_name || 'User'}</span>
+                            <small class="text-muted ms-2">${formatTime(message.timestamp)}</small>
+                        </div>
+                        <div class="message-content">${escapeHtml(message.content)}</div>
+                    `;
+                } else {
+                    messageDiv.innerHTML = `
+                        <div class="message-header">
+                            <strong>${message.sender_full_name || message.sender}</strong>
+                            <span class="badge bg-warning ms-2">Private to you</span>
+                            <small class="text-muted ms-2">${formatTime(message.timestamp)}</small>
+                        </div>
+                        <div class="message-content">${escapeHtml(message.content)}</div>
+                    `;
+                }
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="message-header">
+                        <strong>${message.sender_full_name || message.sender}</strong>
+                        <small class="text-muted ms-2">${formatTime(message.timestamp)}</small>
+                    </div>
+                    <div class="message-content">${escapeHtml(message.content)}</div>
+                `;
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    }
+    
+    function formatTime(timestamp) {
+        const date = new Date(timestamp);
+        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+    
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    
+    // Send message handlers
+    document.addEventListener('DOMContentLoaded', function() {
+        const sendBtn = document.getElementById('sendBtn');
+        const messageInput = document.getElementById('messageInput');
+        
+        if (sendBtn) {
+            sendBtn.addEventListener('click', sendMessage);
+        }
+        
+        if (messageInput) {
+            messageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        }
+    });
+    
+    function sendMessage() {
+        const messageInput = document.getElementById('messageInput');
+        const message = messageInput.value.trim();
+        
+        if (!message) return;
+        
+        if (currentMessageType === 'private' && !selectedRecipient) {
+            alert('Please select a participant for private message');
+            return;
+        }
+        
+        if (chatSocket && chatSocket.readyState === WebSocket.OPEN) {
+            chatSocket.send(JSON.stringify({
+                type: 'chat_message',
+                content: message,
+                message_type: 'text',
+                recipient_id: currentMessageType === 'private' ? parseInt(selectedRecipient) : null
+            }));
+            
+            messageInput.value = '';
+        } else {
+            alert('Chat connection not established. Please wait...');
+            // Try to reconnect
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar && sidebar.classList.contains('active')) {
+                initializeChat();
+            }
+        }
+    }
+    
+    function closeSidebarPanel() {
+        const sidebar = document.getElementById('sidebar');
+        const chatBtn = document.getElementById('chatBtn');
+        const chatInput = document.getElementById('chatInput');
+        
+        sidebar.classList.remove('active');
+        chatBtn.classList.remove('active');
+        chatInput.style.display = 'none';
+    }
+    
+    function leaveMeeting() {
+        // Cancel any pending fullscreen exit timer
+        cancelFullscreenExitTimer();
+        
+        // Stop screen sharing if active
+        if (isScreenSharing) {
+            stopScreenShare();
+        }
+        
+        // Stop all media tracks
+        if (localStream) {
+            localStream.getTracks().forEach(track => {
+                track.stop();
+            });
+            localStream = null;
+        }
+        
+        if (screenStream) {
+            screenStream.getTracks().forEach(track => {
+                track.stop();
+            });
+            screenStream = null;
+        }
+        
+        // Clear fullscreen check interval
+        if (fullscreenCheckInterval) {
+            clearInterval(fullscreenCheckInterval);
+        }
+        
+        // Exit fullscreen before leaving
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+        
+        if (confirm('Are you sure you want to leave the meeting?')) {
+            window.location.href = "{% url 'meetings:meeting_list' %}";
+        }
+    }
+    
+    function leaveMeetingAutomatic() {
+        // Automatically leave meeting without confirmation (used when fullscreen is exited)
+        // Cancel any pending timers
+        cancelFullscreenExitTimer();
+        
+        // Stop screen sharing if active
+        if (isScreenSharing) {
+            stopScreenShare();
+        }
+        
+        // Stop all media tracks
+        if (localStream) {
+            localStream.getTracks().forEach(track => {
+                track.stop();
+            });
+            localStream = null;
+        }
+        
+        if (screenStream) {
+            screenStream.getTracks().forEach(track => {
+                track.stop();
+            });
+            screenStream = null;
+        }
+        
+        // Clear fullscreen check interval
+        if (fullscreenCheckInterval) {
+            clearInterval(fullscreenCheckInterval);
+            fullscreenCheckInterval = null;
+        }
+        
+        // Exit fullscreen before leaving
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+        
+        // Automatically redirect without confirmation
+        window.location.href = "{% url 'meetings:meeting_list' %}";
+    }
+    
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', function() {
+        // Cancel any pending timers
+        cancelFullscreenExitTimer();
+        
+        // Stop all media tracks
+        if (localStream) {
+            localStream.getTracks().forEach(track => {
+                track.stop();
+            });
+        }
+        
+        if (screenStream) {
+            screenStream.getTracks().forEach(track => {
+                track.stop();
+            });
+        }
+        
+        if (fullscreenCheckInterval) {
+            clearInterval(fullscreenCheckInterval);
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,12 @@
+Django
+djangorestframework
+django-cors-headers
+channels
+Pillow
+python-decouple
+django-crispy-forms
+crispy-bootstrap5
+deepface onnxruntime opencv-python numpy pillow
+tf-keras
+
+

@@ -1,0 +1,236 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Online Interview Platform{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Dashboard Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="display-5 fw-bold mb-2">Welcome back, {{ user.full_name }}!</h1>
+                    <p class="lead text-muted">Here's what's happening with your meetings today</p>
+                </div>
+                <div class="text-end">
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'meetings:meeting_create' %}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-plus me-2"></i> Create Meeting
+                        </a>
+                        <a href="{% url 'meetings:join_meeting' %}" class="btn btn-outline-primary btn-lg">
+                            <i class="fas fa-sign-in-alt me-2"></i> Join Meeting
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row mb-5">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="bg-primary bg-gradient rounded-3 p-3">
+                                <i class="fas fa-calendar fa-2x text-white"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <div class="text-muted small fw-semibold">Total Meetings</div>
+                            <div class="h4 mb-0 fw-bold text-primary">{{ total_meetings }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="bg-success bg-gradient rounded-3 p-3">
+                                <i class="fas fa-play fa-2x text-white"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <div class="text-muted small fw-semibold">Active Meetings</div>
+                            <div class="h4 mb-0 fw-bold text-success">{{ active_meetings.count }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="bg-warning bg-gradient rounded-3 p-3">
+                                <i class="fas fa-crown fa-2x text-white"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <div class="text-muted small fw-semibold">Hosted Interviews</div>
+                            <div class="h4 mb-0 fw-bold text-warning">{{ hosted_meetings.count }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="bg-info bg-gradient rounded-3 p-3">
+                                <i class="fas fa-users fa-2x text-white"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <div class="text-muted small fw-semibold">Participated</div>
+                            <div class="h4 mb-0 fw-bold text-info">{{ participated_meetings.count }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Meetings -->
+    {% if active_meetings %}
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="mb-0 fw-bold">Active Interviews</h3>
+                <span class="badge bg-success fs-6">{{ active_meetings.count }} Active</span>
+            </div>
+            <div class="row">
+                {% for meeting in active_meetings %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card meeting-card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex align-items-start justify-content-between mb-3">
+                                <h6 class="card-title fw-bold mb-0">{{ meeting.title }}</h6>
+                                <span class="badge bg-success status-badge">
+                                    <i class="fas fa-circle me-1"></i> Live
+                                </span>
+                            </div>
+                            <p class="card-text text-muted flex-grow-1">{{ meeting.description|truncatechars:80 }}</p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <small class="text-muted">
+                                    <i class="fas fa-users me-1"></i>
+                                    {{ meeting.participants.count }} participants
+                                </small>
+                                <a href="{% url 'meetings:meeting_room' meeting.pk %}" class="btn btn-success btn-sm">
+                                    <i class="fas fa-video me-1"></i> Join Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Recent Meetings -->
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-bold">Recent Hosted Interviews</h5>
+                        <a href="{% url 'meetings:meeting_list' %}" class="btn btn-sm btn-outline-primary">
+                            View All
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {% if hosted_meetings %}
+                        {% for meeting in hosted_meetings %}
+                        <div class="d-flex align-items-center mb-3 p-3 rounded-3" style="background-color: rgba(99, 102, 241, 0.05);">
+                            <div class="flex-shrink-0">
+                                <div class="bg-primary bg-gradient rounded-circle p-2">
+                                    <i class="fas fa-crown text-white"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-1 fw-semibold">{{ meeting.title }}</h6>
+                                <p class="text-muted small mb-2">{{ meeting.description|truncatechars:60 }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-{% if meeting.status == 'active' %}success{% elif meeting.status == 'scheduled' %}warning{% else %}secondary{% endif %} status-badge">
+                                        {{ meeting.get_status_display }}
+                                    </span>
+                                    <small class="text-muted">{{ meeting.created_at|date:"M d, Y" }}</small>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-calendar-plus fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">No hosted Interviews yet.</p>
+                            <a href="{% url 'meetings:meeting_create' %}" class="btn btn-primary">
+                                <i class="fas fa-plus me-2"></i> Create Your First Meeting
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-bold">Recent Participated Interview</h5>
+                        <a href="{% url 'meetings:meeting_list' %}" class="btn btn-sm btn-outline-primary">
+                            View All
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {% if participated_meetings %}
+                        {% for meeting in participated_meetings %}
+                        <div class="d-flex align-items-center mb-3 p-3 rounded-3" style="background-color: rgba(16, 185, 129, 0.05);">
+                            <div class="flex-shrink-0">
+                                <div class="bg-success bg-gradient rounded-circle p-2">
+                                    <i class="fas fa-users text-white"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-1 fw-semibold">{{ meeting.title }}</h6>
+                                <p class="text-muted small mb-2">{{ meeting.description|truncatechars:60 }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-{% if meeting.status == 'active' %}success{% elif meeting.status == 'scheduled' %}warning{% else %}secondary{% endif %} status-badge">
+                                        {{ meeting.get_status_display }}
+                                    </span>
+                                    <small class="text-muted">{{ meeting.created_at|date:"M d, Y" }}</small>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">No participated Interview yet.</p>
+                            <a href="{% url 'meetings:join_meeting' %}" class="btn btn-success">
+                                <i class="fas fa-sign-in-alt me-2"></i> Join a Interview
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
